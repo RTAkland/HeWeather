@@ -1,13 +1,13 @@
 CHANGE_TIME: 2021-09-19 18:01:43 Changer:Tapso
-city_name: 黄岩 - 浙江省 - 台州 - 中国
-key: f3e421bdeee24c23bedc445e5bbf019d
+city_name: null
+key: null
 location: 101210612
 mode: free
-password: ypexgyjplvcxdbjc
+password: null
 port: 465
-receiver: n3458671395@163.com
-sender: 3458671395@qq.com
-server: smtp.qq.com
+receiver: null
+sender: null
+server: null
 time:
 - 08:00
 - '12:00'
