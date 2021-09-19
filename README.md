@@ -1,6 +1,5 @@
 # WeatherSystem
-# 使用前准备
-请务必从Releases中下载
+# 请务必从Releases中下载
 ### 本程序基于Python 3.x 以及[和风天气API](https://dev.qweather.com/)
 - 请现在电脑上安装python 3.x版
 - 首先在路径栏中输入 `pip -r requirements.txt` 等待安装完成后打开Config.yaml 修改内容 配置文件中的所有项必须全部填写且正确
