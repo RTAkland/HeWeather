@@ -1,4 +1,4 @@
-# HeWeatherReporter
+# HeWeatherSystem
 # 请务必从Releases中下载
 ### 本程序基于Python 3.x 以及[和风天气API](https://dev.qweather.com/)
 - 请现在电脑上安装python 3.x版
@@ -18,4 +18,5 @@ Config.yaml
 - `time`:  发送时间
 
  # 运行程序
-双击Weather.py
+ 直接双击Weather.py
+ 使用命令行启动Weather.py 可以使用`test` 和 `warning` 参数进行测试 (前提是配置文件填写正确) 具体参数:`python Weather.py -t test` & `python Weather.py -w warning`
