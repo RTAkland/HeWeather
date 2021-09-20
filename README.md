@@ -1,4 +1,4 @@
-# HeWeatherSystem
+# HeWeatherReporter
 # 请务必从Releases中下载
 ### 本程序基于Python 3.x 以及[和风天气API](https://dev.qweather.com/)
 - 请现在电脑上安装python 3.x版
