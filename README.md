@@ -7,7 +7,7 @@
 以下是各个参数代表的意义
 
 Config.yaml
-- `key`:  API的密钥 获取请前往[创建应用和KEY](https://dev.qweather.com/docs/start/get-key/) 创建过程请选择WebAPI
+- `key`:  API的密钥 获取请前往[创建应用和KEY](https://dev.qweather.com/docs/start/get-key/) 创建的API 请选择WebAPI
 - `mode`: 发送模式
 - `location`:  获取数据的城市 运行SearchCity.py进行自助搜索
 - `sender`:  发送邮件的账号
