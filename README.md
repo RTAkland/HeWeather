@@ -21,4 +21,4 @@ Config.yaml
  直接双击Weather.py
  使用命令行启动Weather.py 可以使用`test` 和 `warning` 参数进行测试 (前提是配置文件填写正确) 具体参数:`python Weather.py -t test` & `python Weather.py -w warning`
  
- 使用命令行启动SearchCity.py 可以使用`python SearchCity.py -i init`来初始化配置文件
+ v2.7.1版本以前可以使用`python SearchCity.py -i init`来初始化配置文件 注:在v2.7.1(21/9/27)以后代码取消了初始化配置文件的功能
