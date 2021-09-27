@@ -1,4 +1,4 @@
-# 不要使用git clone 下载文件请直接到Releases下载最新版本
+# 下载文件请直接到Releases下载最新版本
 ## 邮箱服务器使用SSL 链接方式登录 请选择支持SSL链接的邮箱
 ### 本程序基于Python 3.x 以及[和风天气API](https://dev.qweather.com/)
 - 请现在电脑上安装python 3.x版
