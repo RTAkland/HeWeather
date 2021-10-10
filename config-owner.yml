@@ -1,0 +1,24 @@
+mail-settings:
+  sender: i3458671395@yeah.net
+  password: XGJAZYLNLOJWWAZY
+  server: smtp.yeah.net
+  port: 465
+request-settings:
+  key: 0657f6982c5b49bf9a3bfc0efd7e1802
+  location: 101210612
+  mode: dev
+  unit: m
+  lang: zh
+other-settings:
+  receiver:
+  - i3458671395@yeah.net
+  icon-style: set-1-bw
+  weather-picture: false
+  send-times:
+  - '08:00'
+  - '12:00'
+  - '18:00'
+only-view-settings:
+  city-name: 黄岩-浙江省-台州
+  time: Sat Oct 09 21:06:09 2021
+  user: Tapso

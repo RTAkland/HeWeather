@@ -2,18 +2,15 @@
 mail-settings:
 
  # [必填/只能一个] 邮件代发邮箱
- # 默认: null
   sender:
 
 
  # [必填/只能一个] 代发邮箱登录密码
- # 默认: null
  # 具体申请方法自行搜索
   password:
 
 
  # [必填/只能一个] 代发邮箱服务器
- # 默认: null
  # 如example@yeah.net 服务器则为: smtp.yeah.net
  # qq邮箱: smtp.qq.com
  # 163邮箱: smtp.163.com
@@ -31,13 +28,15 @@ request-settings:
 
 
  # [必填/只能一个] API密钥
- # 默认: null
+ # 注册账号前往: https://id.qweather.com/#/register?redirect=https%3A%2F%2Fconsole.qweather.com 
+ # 申请key前往: https://dev.qweather.com/docs/start/get-key/
+ # 变更用户类型前往: https://dev.qweather.com/help/account/#account-type
   key:
 
 
  # [必填/只能一个] 地区ID代码
- # 默认: null
-  location: 101210612
+ # 请勿擅自修改 更改地区ID请打开SearchCity.py搜索
+  location:
 
 
  # [必填/只能一个] 发送模式
@@ -54,7 +53,7 @@ request-settings:
  # 默认: m
  # m代表公制单位 例如"今天温度为27 ℃", "能见度为10 km"
  # i代表英制单位 例如"今天温度27 ℉", "能见度为10 mile"
- # 想要了解更多请前往: https://dev.qweather.com/docs/start/unit/
+ # 了解更前往: https://dev.qweather.com/docs/start/unit/
   unit: m
 
 
@@ -67,7 +66,6 @@ request-settings:
 # 其他设置
 other-settings:
  # [必填/可多个] 邮件接收者 不管有几个必须是列表
- # 默认: null
  # 在yaml语言中列表形式如下示例填写 在python中是: ["example@example.com", 'example@example.com, 'example@example.com"]
  # 填写示例:
  # receiver:
@@ -104,11 +102,11 @@ other-settings:
 # [标识/不填] 仅作用户读取标识
 only-view-settings:
  # 城市名
-  city-name: 黄岩-浙江省-台州
+  city-name:
  # 修改时间
-  time: Sat Oct 09 21:33:49 2021
+  time:
  # 修改用户
-  user: Tapso
+  user:
 
 
 
