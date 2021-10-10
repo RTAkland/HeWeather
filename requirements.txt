@@ -1,11 +1,5 @@
-<<<<<<< HEAD
-requests==2.20
-pyyaml
-pandas
-=======
 requests
 ruamel.yaml
 pandas
 pyppeteer
 bs4
->>>>>>> 2080115 ([改动测试])
