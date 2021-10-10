@@ -1,5 +1,7 @@
-# 此为注释 – 将被 Git 忽略
- 
-*.yml       # 忽略所有 .a 结尾的文件
-!config.yml    # 但 lib.a 除外
+*.yml
+*.txt
+*.zip
+
+!config.yml
 .idea/
+
