@@ -2,7 +2,7 @@
 # -- coding:utf-8 --
 # @Date: 2021/10/9 21:10
 # @File: SearchCity.py
-
+import getpass
 import os
 import time
 import sys
@@ -55,7 +55,7 @@ if __name__ == '__main__':
                     data['request-settings']['location'] = result[select_index][0]
                     data['only-view-settings']['city-name'] = f'{result[select_index][2]}-{result[select_index][4]}-{result[select_index][6]}'
                     data['only-view-settings']['time'] = time.strftime("%a %b %d %H:%M:%S %Y", time.localtime())
-                    data['only-view-settings']['user'] = os.getlogin()
+                    data['only-view-settings']['user'] = getpass.getuser()
 
                 with open('config.yml', 'w', encoding='utf-8') as wf:
                     yaml.dump(data, wf)

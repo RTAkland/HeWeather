@@ -3,3 +3,4 @@ ruamel.yaml
 pandas
 pyppeteer
 bs4
+openpyxl
