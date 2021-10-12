@@ -3,7 +3,6 @@
 # @Date: 2021/10/9 21:10
 # @File: SearchCity.py
 import getpass
-import os
 import time
 import sys
 import pandas as pd
@@ -53,7 +52,7 @@ if __name__ == '__main__':
                     data = yaml.load(of)
 
                     data['request-settings']['location'] = result[select_index][0]
-                    data['only-view-settings']['city-name'] = f'{result[select_index][2]}-{result[select_index][4]}-{result[select_index][6]}'
+                    data['only-view-settings']['city-name'] = f'{result[select_index][2]}-{result[select_index][4]}-{result[select_index][6]} '
                     data['only-view-settings']['time'] = time.strftime("%a %b %d %H:%M:%S %Y", time.localtime())
                     data['only-view-settings']['user'] = getpass.getuser()
 
