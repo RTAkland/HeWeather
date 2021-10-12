@@ -38,6 +38,7 @@ def get_location():
     加载html分析url并返回参数
     :return:
     """
+
     asyncio.get_event_loop().run_until_complete(get_html())
     with open('temp.html', 'r', encoding='utf-8') as open_file:
         data = open_file.read()
@@ -46,3 +47,4 @@ def get_location():
     ele_cut = element.split('-')[-1].split('.')[0]
     os.remove('temp.html')
     return ele_cut
+

@@ -37,7 +37,7 @@ class SendWeatherMail:
         self.weather_picture = my_config['other-settings']['weather-picture']  # 天气大致状况图
         self.send_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())  # 发送时间
 
-        if arg_test == 'war-force':
+        if arg_test == 'war-force':  # 如果运行参数是war-force则替换self.location
             self.location = force_get_location.get_location()
 
         self.Dev_Link = f'https://devapi.qweather.com/v7/weather/7d?location={self.location}&key={self.key}&unit={self.unit}&lang={self.lang}'
@@ -497,31 +497,28 @@ if __name__ == '__main__':
     if arg_test:
         if arg_test == 'dev':
             SendWeatherMail().Dev_mode()
-            print(
-                f'{get_log_time()}[TEST-MODE]使用测试模式发送了一封[Dev] daily weather邮件 至 {SendWeatherMail().receiver}. 3秒后退出...')
+            print(f'{get_log_time()}执行完成...')
             time.sleep(3)
             sys.exit(0)
         elif arg_test == 'free':
             SendWeatherMail().Free_mode()
-            print(
-                f'{get_log_time()}[TEST-MODE]使用测试模式发送了一封[Free] daily weather邮件 至 {SendWeatherMail().receiver}. 3秒后退出... ')
+            print(f'{get_log_time()}执行完成...')
             time.sleep(3)
             sys.exit(0)
         elif arg_test == 'warning':
             SendWeatherMail().warning_send_mail()
-            print(
-                f'{get_log_time()}[TEST-MODE]使用测试模式发送了一封warning邮件 至 {SendWeatherMail().receiver} 如果没有自然灾害则不发 3秒后退出... ')
+            print(f'{get_log_time()}执行完成...')
             time.sleep(3)
             sys.exit(0)
         elif arg_test == 'war-force':
             SendWeatherMail().warning_send_mail()
-            print(
-                f'{get_log_time()}[TEST-MODE]从https://www.qweather.com/severe-weather获取了一个地区的自然灾害预警发送至 {SendWeatherMail().receiver} 3秒后退出... ')
+            print(f'{get_log_time()}执行完成...')
             time.sleep(3)
             sys.exit(0)
 
     send_time = my_config['other-settings']['send-times']
-    executor = Process(target=run, args=(my_config['request-settings']['mode'], send_time,))  # 使用多进程来实现发送正常天气和每10分钟一次的检查自然灾害预报
+    # 使用多进程来实现发送正常天气和每10分钟一次的检查自然灾害预报
+    executor = Process(target=run, args=(my_config['request-settings']['mode'], send_time,))
     executor.start()
     time_count = 0
 
