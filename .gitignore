@@ -1,5 +1,4 @@
 *.yml
-*.txt
 *.zip
 
 !config.yml
