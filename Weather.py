@@ -486,7 +486,7 @@ if __name__ == '__main__':
         icon_style = random.choice(styles)
 
     # 自然灾害中的typeID 对应的类型
-    with open('./assets/resources/type.json', 'r', encoding='utf-8') as f:
+    with open('assets/resources/type_warning.json', 'r', encoding='utf-8') as f:
         type_name = json.loads(f.read())
     # 获取命令行参数
     parser = argparse.ArgumentParser()
