@@ -36,6 +36,7 @@ async def get_html():
 def get_location():
     """
     加载html分析url并返回参数
+    注: 标签检索元素随时可能会失效(包括但不限于: 官方修改html标签, 官方关闭网站, 等等)
     :return:
     """
 
