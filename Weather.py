@@ -34,7 +34,6 @@ class SendWeatherMail:
         self.unit = my_config['request-settings']['unit']  # 度量单位
         self.lang = my_config['request-settings']['lang']  # 语言
         self.icon_style = my_config['other-settings']['icon-style']  # 天气图标
-        self.weather_picture = my_config['other-settings']['weather-picture']  # 天气大致状况图
         self.send_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())  # 发送时间
 
         if arg_test == 'war-force':  # 如果运行参数是war-force则替换self.location
