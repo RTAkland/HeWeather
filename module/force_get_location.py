@@ -45,7 +45,7 @@ def get_location():
         data = open_file.read()
     soup = BeautifulSoup(data, 'html.parser')
     element = soup.find(attrs={'class': 'c-severe-news-item__a'}).get('href')
-    ele_cut = element.split('-')[-1].split('.')[0]
+    location = element.split('-')[-1].split('.')[0]
     os.remove('temp.html')
-    return ele_cut
+    return location
 
