@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # @Time : 2021/10/13 下午8:45
-# @File: Real-time_air_quality.py
+# @File: API_Real-time_air_quality.py
 
 """
 Get Real-time air quality from API and return data

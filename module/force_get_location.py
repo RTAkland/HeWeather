@@ -10,6 +10,8 @@ from pyppeteer import launch
 from bs4 import BeautifulSoup
 
 """
+免费版&开发版key 使用pyppeteer获取正在预警的城市id
+
 用户使用war-force启动Weather.py时会使用本程序获取官网上的预警列表第一个
 并返回location-ID
 
