@@ -4,7 +4,7 @@
 # @File: API_Real-time_air_quality.py
 
 """
-Get Real-time air quality from API and return data
+开发版key获取实时空气质量
 only: Dev-mode
 """
 
@@ -13,7 +13,7 @@ import json
 from ruamel.yaml import YAML
 
 
-def real_time_air_quality_args():
+def real_time_air_quality():
     yaml = YAML()
     with open('../../config.yml', 'r', encoding='utf-8') as f:
         config = yaml.load(f.read())
@@ -33,5 +33,4 @@ def real_time_air_quality_args():
                      f'location={location}&key={key}&lang={lang}&unit={unit}&gzip=y')
     _data = json.loads(r.text)
 
-    req_status = code_status[_data['code']]
-    return req_status, _data['now']
+    return code_status[_data['code']], _data['now']
