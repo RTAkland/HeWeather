@@ -19,6 +19,7 @@ from multiprocessing import Process
 import requests
 from ruamel.yaml import YAML
 from module import force_get_location
+from module.API import API_get_warning_list
 
 
 class SendWeatherMail:
@@ -34,10 +35,14 @@ class SendWeatherMail:
         self.unit = my_config['request-settings']['unit']  # 度量单位
         self.lang = my_config['request-settings']['lang']  # 语言
         self.icon_style = my_config['other-settings']['icon-style']  # 天气图标
+        self.mode = my_config['request-settings']['mode']  # 发送模式 --仅作判断标识
         self.send_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())  # 发送时间
 
         if arg_test == 'war-force':  # 如果运行参数是war-force则替换self.location
-            self.location = force_get_location.get_location()
+            if self.mode != 'dev':  # 如果发送模式不是dev则使用爬虫方式获取城市id
+                self.location = force_get_location.get_location()
+
+            self.location = API_get_warning_list.get_warning_list()[1]
 
         self.Dev_Link = f'https://devapi.qweather.com/v7/weather/7d?location={self.location}&key={self.key}&unit={self.unit}&lang={self.lang}'
         self.indices = f'https://devapi.qweather.com/v7/indices/1d?type=1,2&location={self.location}&key={self.key}&unit={self.unit}&lang={self.lang}'
