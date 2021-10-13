@@ -4,6 +4,5 @@
 !config.yml
 .idea/
 venv/
-module/__pychache__/
-API/__pychache__/
+**/__pychache__/
 

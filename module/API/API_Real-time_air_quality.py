@@ -30,7 +30,7 @@ def real_time_air_quality():
     if mode != 'dev':
         return False, print('Only Dev-mode')
     r = requests.get(f'https://devapi.qweather.com/v7/air/now?'
-                     f'location={location}&key={key}&lang={lang}&unit={unit}&gzip=y')
+                     f'location={location}config.yml&key={key}&lang={lang}&unit={unit}&gzip=y')
     _data = json.loads(r.text)
 
     return code_status[_data['code']], _data['now']

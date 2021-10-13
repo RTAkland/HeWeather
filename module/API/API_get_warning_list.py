@@ -14,7 +14,7 @@ from ruamel.yaml import YAML
 
 def get_warning_list(_range='cn'):
     yaml = YAML()
-    with open('../../config-owner.yml', 'r', encoding='utf-8') as f:
+    with open('../../config.yml', 'r', encoding='utf-8') as f:
         config = yaml.load(f.read())
     with open('../../assets/resources/code.json', 'r', encoding='utf-8') as code_file:
         code_status = json.loads(code_file.read())
