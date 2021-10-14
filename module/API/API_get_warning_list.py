@@ -26,3 +26,4 @@ def get_warning_list(_range='cn'):
     _data = json.loads(r.text)
 
     return code_status[_data['code']], _data['warningLocList'][0]['locationId']
+
