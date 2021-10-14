@@ -438,7 +438,6 @@ def run(run_mode, times):
         while True:
             time_local = time.strftime("%H:%M", time.localtime())
             print(f'{get_log_time()}运行中  发送模式: Dev 发送时间:{times}')
-            time.sleep(3)
             if time_local in times:
                 SendWeatherMail().Dev_mode()
                 print(f'{get_log_time()}正在发送邮件...')
@@ -447,7 +446,6 @@ def run(run_mode, times):
         while True:
             time_local = time.strftime("%H:%M", time.localtime())
             print(f'{get_log_time()}运行中  发送模式: Dev 发送时间:{times}')
-            time.sleep(3)
             if time_local in times:
                 SendWeatherMail().Free_mode()
                 print(f'{get_log_time()}正在发送邮件...')
@@ -458,17 +456,14 @@ def check_config():
     for mail in my_config['mail-settings'].values():
         if mail is None:
             print(f'{get_log_time()}[ERROR]"mail-settings"有未填写项...')
-            time.sleep(3)
             sys.exit(1)
     for request in my_config['request-settings'].values():
         if request is None:
             print(f'{get_log_time()}[ERROR]"request-settings"有未填写项...')
-            time.sleep(3)
             sys.exit(1)
     for other in my_config['other-settings'].values():
         if other is None:
             print(f'{get_log_time()}[ERROR]"request-settings"有未填写项...')
-            time.sleep(3)
             sys.exit(1)
 
 
@@ -484,7 +479,6 @@ if __name__ == '__main__':
 
     if icon_style not in ['set-1-bw', 'set-1-color', 'set-2', 'random']:
         print(f'{get_log_time()}[ERROR]图标文件错误请检查配置文件填写是否正确...')
-        time.sleep(3)
         sys.exit(1)
     elif icon_style == 'random':
         styles = ['set-1-bw', 'set-1-color', 'set-2']
@@ -502,22 +496,18 @@ if __name__ == '__main__':
         if arg_test == 'dev':
             SendWeatherMail().Dev_mode()
             print(f'{get_log_time()}执行完成...')
-            time.sleep(3)
             sys.exit(0)
         elif arg_test == 'free':
             SendWeatherMail().Free_mode()
             print(f'{get_log_time()}执行完成...')
-            time.sleep(3)
             sys.exit(0)
         elif arg_test == 'warning':
             SendWeatherMail().warning_send_mail()
             print(f'{get_log_time()}执行完成...')
-            time.sleep(3)
             sys.exit(0)
         elif arg_test == 'war-force':
             SendWeatherMail().warning_send_mail()
             print(f'{get_log_time()}执行完成...')
-            time.sleep(3)
             sys.exit(0)
 
     send_time = my_config['other-settings']['send-times']
