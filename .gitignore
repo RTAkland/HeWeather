@@ -1,6 +1,5 @@
 *.yml
 *.zip
-
 !config.yml
 .idea/
 venv/
