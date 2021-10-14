@@ -1,0 +1,23 @@
+mail-settings:
+  sender: i3458671395@yeah.net
+  password: VGCLFXELEUIQGAJX
+  server: smtp.yeah.net
+  port: 465
+request-settings:
+  key: 0657f6982c5b49bf9a3bfc0efd7e1802
+  location: 101210612
+  mode: dev
+  unit: m
+  lang: zh
+other-settings:
+  receiver:
+  - i3458671395@yeah.net
+  icon-style: set-1-bw
+  send-times:
+  - 08:00
+  - 12:00
+  - 18:00
+only-view-settings:
+  city-name:
+  time:
+  user:
