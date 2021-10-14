@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <meta charset="utf-8" />
+    <title>Weather</title>
+  </head>
+
+  <body>
+  <div style="text-align: center;">
+    <h2>{self.city_name}今天天气</h2>
+    <p>
+      <i>发送者账号: {self.sender}
+        <br />发送时间: {self.send_time}</i>
+    </p>
+    <p>
+      更新时间{date[0]}
+      <br />白天的天气是{day_weather[0]}
+      <sub><img src="cid:img1" width="32" height="32" /></sub>{night_weather[0]}
+      <sub><img src="cid:img2" width="32" height="32" /></sub>
+      <br />当天日出时间:{sunrise[0]} 日落时间:{sunset[0]}
+      <br />当天最高气温{temperature_max[0]}℃ 最低气温{temperature_min[0]}℃
+      <br />周围空气湿度{humidity[0]}%
+      <br />
+      <br />==================================</p>
+    </div>
+    <div style="text-align: center;">
+      <h2>{date[1]} 天气(预测)</h2>
+      <p>白天的天气是 {day_weather[1]}
+        <sub><img src="cid:img3" width="32" height="32" /></sub>晚上的天气是 {night_weather[1]}
+        <sub><img src="cid:img4" width="32" height="32" /></sub>
+        <br />当天日出时间:{sunrise[1]} 日落时间:{sunset[1]}
+        <br />当天最高气温{temperature_max[1]}℃ 最低气温{temperature_min[0]}℃
+        <br />周围空气湿度{humidity[1]}%
+        <br /></p>
+     </div>
+    <div style="text-align: center;">
+      <h2>{date[2]} 天气(预测)</h2>
+      <p>白天的天气是{day_weather[2]}
+        <sub><img src="cid:img5" width="32" height="32" /></sub>晚上的天气是 {night_weather[2]}
+        <sub><img src="cid:img6" width="32" height="32" /></sub>
+        <br />当天日出时间:{sunrise[2]} 日落时间:{sunset[2]}
+        <br />当天最高气温{temperature_max[2]}℃ 最低气温{temperature_min[2]}℃
+        <br />周围空气湿度{humidity[2]}%
+        <br />
+      </p>
+    </div>
+    <div style="text-align: center;
+      font-size: medium;">
+      <b>
+        <a href="https://dev.qweather.com/" style="color: black;" target="_blank">
+          <img src="https://dev.qweather.com/assets/images/logo-s-dark.png" alt="QWeatherIcon" width="16" height="16" />和风天气开发平台</a>
+        <br />
+        <a href="https://github.com/MarkusJoe/HeWeatherReporter" style="color: black;" target="_blank">
+          <img src="https://codechina.csdn.net/GeminiTay/some-rawpic/-/raw/master/fluidicon.png" alt="githubIcon" width="16" height="16" />Github仓库</a>
+      </b>
+    </div>
+  </body>
+
+</html>
