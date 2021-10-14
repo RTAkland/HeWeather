@@ -80,7 +80,8 @@ other-settings:
  # 默认: "set-1-bw"
  # 可选: "set-1-bw" , "set-1-color" , "set-2", "random"
  # 注: 不填或选择random则在启动是随机选择一个风格
- # 主题预览: https://gitee.com/rtakland/prefile-repo/raw/master/style.png | https://gitee.com/rtakland/prefile-repo/raw/master/style.png
+ # 主题预览: URL-1: https://gitee.com/rtakland/prefile-repo/raw/master/style.png |
+ # URL-2: https://raw.githubusercontent.com/MarkusJoe/HeWeatherReporter/main/assets/resources/rawpic/style.png
   icon-style: set-1-bw
 
 
