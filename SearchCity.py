@@ -63,11 +63,9 @@ if __name__ == '__main__':
                 sys.exit(0)
             except ValueError:
                 print(f'{get_log_time()}[ERROR]请正确输入索引...')
-                time.sleep(3)
                 sys.exit(1)
     else:
         print(f'{get_log_time()}[ERROR]无关键字...')
-        time.sleep(3)
         sys.exit(1)
 
 
