@@ -34,3 +34,4 @@ def real_time_air_quality():
     _data = json.loads(r.text)
 
     return code_status[_data['code']], _data['now']
+
