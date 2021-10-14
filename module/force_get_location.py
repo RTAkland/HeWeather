@@ -50,4 +50,3 @@ def get_location():
     location = element.split('-')[-1].split('.')[0]
     os.remove('temp.html')
     return location
-
