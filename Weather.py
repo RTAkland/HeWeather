@@ -305,22 +305,13 @@ class SendWeatherMail:
                 <img src="cid:img6" width="32" height="32" />
                 <br />当天日出时间:{sunrise[2]} 日落时间:{sunset[2]}
                 <br />当天最高气温{temperature_max[2]}℃ 最低气温{temperature_min[2]}℃
-                <br />周围空气湿度{humidity[2]}%
-                <br />
-              </p>
-            </div>
-            <div style="text-align: center;
-              font-size: medium;">
-              <b>
-                <a href="https://dev.qweather.com/" style="color: black;" target="_blank">
-                  <img src="https://dev.qweather.com/assets/images/logo-s-dark.png" alt="QWeatherIcon" width="15" height="15" />和风天气开发平台</a>
-                <br />
-                <a href="https://github.com/MarkusJoe/HeWeatherReporter" style="color: black;" target="_blank">
-                  <img src="https://codechina.csdn.net/GeminiTay/some-rawpic/-/raw/master/fluidicon.png" alt="githubIcon" width="15" height="15" />Github仓库</a>
-              </b>
-            </div>
-            <audio controls src=""></audio>
-          </body>
+                <br />周围空气湿度{humidity[2]}% <br /> </p> </div> <div style="text-align: center; font-size: medium;"> 
+                <b> <a href="https://dev.qweather.com/" style="color: black;" target="_blank"> <img 
+                src="https://dev.qweather.com/assets/images/logo-s-dark.png" alt="QWeatherIcon" width="15" 
+                height="15" />和风天气开发平台</a> <br /> <a href="https://github.com/MarkusJoe/HeWeatherReporter" 
+                style="color: black;" target="_blank"> <img 
+                src="https://gitee.com/rtakland/prefile-repo/raw/master/githubicon.png" alt="githubIcon" width="15" 
+                height="15" />Github仓库</a> </b> </div> <audio controls src=""></audio> </body> 
         
         </html>
         """
