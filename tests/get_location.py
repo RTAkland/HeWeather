@@ -15,7 +15,4 @@ class RequestWebsite:
         __session = Session()
         __session.trust_env = False
         __r = __session.get(self.url, timeout=5).text
-        return {'ip': __r.split(':')[1].split()[0], 'location': __r.split(':')[2].split()}  # ip and location
-
-
-print(RequestWebsite().request())
+        return {'IP:': __r.split(':')[1].split()[0], 'Location': __r.split(':')[2].split()}  # return IP & Cities
