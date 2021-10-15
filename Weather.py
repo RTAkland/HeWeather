@@ -44,9 +44,14 @@ class SendWeatherMail:
 
             self.location = API_get_warning_list.get_warning_list()[1]
 
-        self.Dev_Link = f'https://devapi.qweather.com/v7/weather/7d?location={self.location}&key={self.key}&unit={self.unit}&lang={self.lang}'
-        self.indices = f'https://devapi.qweather.com/v7/indices/1d?type=1,2&location={self.location}&key={self.key}&unit={self.unit}&lang={self.lang}'
-        self.Free_Link = f'https://devapi.qweather.com/v7/weather/3d?location={self.location}&key={self.key}&unit={self.unit}&lang={self.lang}'
+        self.Dev_Link = f'https://devapi.qweather.com/v7/weather/7d?location=' \
+                        f'{self.location}&key={self.key}&unit={self.unit}&lang={self.lang}'
+
+        self.indices = f'https://devapi.qweather.com/v7/indices/1d?type=1,2&location=' \
+                       f'{self.location}&key={self.key}&unit={self.unit}&lang={self.lang}'
+
+        self.Free_Link = f'https://devapi.qweather.com/v7/weather/3d?location=' \
+                         f'{self.location}&key={self.key}&unit={self.unit}&lang={self.lang} '
 
         self.codes = json.loads(open('./assets/resources/code.json', 'r', encoding='utf-8').read())
 
@@ -201,21 +206,13 @@ class SendWeatherMail:
                     <sub><img src="cid:img14" width="25" height="25" /></sub>
                     <br />当天日出时间:{sunrise[2]} 日落时间:{sunset[2]}
                     <br />当天最高气温{temperature_max[2]}℃ 最低气温{temperature_min[2]}℃
-                    <br />周围空气湿度{humidity[2]}%
-                    <br />
-                    <br /></p>
-            </div>
-            <div style="text-align: center;
-            font-size: medium;">
-                <b>
-                    <a href="https://dev.qweather.com/" style="color: black;" target="_blank">
-                        <img src="https://dev.qweather.com/assets/images/logo-s-dark.png" alt="QWeatherIcon" width="15" height="15" />和风天气开发平台</a>
-                    <br />
-                    <a href="https://github.com/MarkusJoe/HeWeatherReporter" style="color: black;" target="_blank">
-                        <img src="https://codechina.csdn.net/GeminiTay/some-rawpic/-/raw/master/fluidicon.png" alt="githubIcon" width="15" height="15" />Github仓库</a>
-                </b>
-            </div>
-          </body>
+                    <br />周围空气湿度{humidity[2]}% <br /> <br /></p> </div> <div style="text-align: center; font-size: 
+                    medium;"> <b> <a href="https://dev.qweather.com/" style="color: black;" target="_blank"> <img 
+                    src="https://dev.qweather.com/assets/images/logo-s-dark.png" alt="QWeatherIcon" width="15" 
+                    height="15" />和风天气开发平台</a> <br /> <a href="https://github.com/MarkusJoe/HeWeatherReporter" 
+                    style="color: black;" target="_blank"> <img 
+                    src="https://codechina.csdn.net/GeminiTay/some-rawpic/-/raw/master/fluidicon.png" 
+                    alt="githubIcon" width="15" height="15" />Github仓库</a> </b> </div> </body> 
         
         </html>
                 """
