@@ -3,6 +3,6 @@
 !config.yml
 .idea/
 venv/
-**/__pychache__/
+__pychache__/
 *.pyc
 
