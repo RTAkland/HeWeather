@@ -28,7 +28,7 @@ def read_excel(kw):
     index_count = 0
     city_list = []
     print(f'{get_log_time()}读取文件中...')
-    df = pd.read_excel('./assets/resources/China-City-List.xlsx')
+    df = pd.read_excel(sys.path[1] + '/assets/resources/China-City-List.xlsx')
     pd.set_option('max_rows', None)  # 读取xlsx文件不折叠
     data_records = df.to_dict(orient='split')
     for i in data_records['data']:
@@ -39,6 +39,13 @@ def read_excel(kw):
     if not city_list:
         return False
     return city_list
+
+
+def semi_automatic(city_name=None):
+    if city_name:
+        read_excel(city_name)
+    else:
+        return False
 
 
 if __name__ == '__main__':
@@ -53,7 +60,8 @@ if __name__ == '__main__':
                     data = yaml.load(of)
 
                     data['request-settings']['location'] = result[select_index][0]
-                    data['only-view-settings']['city-name'] = f'{result[select_index][2]}-{result[select_index][4]}-{result[select_index][6]} '
+                    data['only-view-settings'][
+                        'city-name'] = f'{result[select_index][2]}-{result[select_index][4]}-{result[select_index][6]} '
                     data['only-view-settings']['time'] = time.strftime("%a %b %d %H:%M:%S %Y", time.localtime())
                     data['only-view-settings']['user'] = getpass.getuser()
 
