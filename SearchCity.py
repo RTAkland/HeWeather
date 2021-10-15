@@ -41,13 +41,6 @@ def read_excel(kw):
     return city_list
 
 
-def semi_automatic(city_name=None):
-    if city_name:
-        read_excel(city_name)
-    else:
-        return False
-
-
 if __name__ == '__main__':
     yaml = YAML()
     keyword = input(f'{get_log_time()}输入城市名进行搜索:')

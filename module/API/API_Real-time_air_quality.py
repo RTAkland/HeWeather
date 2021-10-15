@@ -10,12 +10,13 @@ only: Dev-mode
 
 import requests
 import json
+import sys
 from ruamel.yaml import YAML
 
 
 def real_time_air_quality():
     yaml = YAML()
-    with open('../../config.yml', 'r', encoding='utf-8') as f:
+    with open(sys.path[1] + '/config.yml', 'r', encoding='utf-8') as f:
         config = yaml.load(f.read())
 
         mode = config['request-settings']['mode']
@@ -24,7 +25,7 @@ def real_time_air_quality():
         unit = config['request-settings']['unit']
         lang = config['request-settings']['lang']
 
-    with open('../../assets/resources/code.json', 'r', encoding='utf-8') as code_file:
+    with open(sys.path[1] + '/assets/resources/code.json', 'r', encoding='utf-8') as code_file:
         code_status = json.loads(code_file.read())
 
     if mode != 'dev':

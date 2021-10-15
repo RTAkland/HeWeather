@@ -7,6 +7,7 @@
 开发版key使用此API可以快速返回正在预警的城市id
 Only Dev-mode
 """
+import sys
 
 import requests
 import json
@@ -14,9 +15,9 @@ from ruamel.yaml import YAML
 
 def get_warning_list(_range='cn'):
     yaml = YAML()
-    with open('../../config.yml', 'r', encoding='utf-8') as f:
+    with open(sys.path[1] + '/config.yml', 'r', encoding='utf-8') as f:
         config = yaml.load(f.read())
-    with open('../../assets/resources/code.json', 'r', encoding='utf-8') as code_file:
+    with open(sys.path[1] + '/assets/resources/code.json', 'r', encoding='utf-8') as code_file:
         code_status = json.loads(code_file.read())
 
         key = config['request-settings']['key']

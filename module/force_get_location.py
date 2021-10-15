@@ -5,6 +5,7 @@
 
 import asyncio
 import os
+import sys
 
 from pyppeteer import launch
 from bs4 import BeautifulSoup
@@ -30,7 +31,7 @@ async def get_html():
     await page.goto('https://www.qweather.com/severe-weather-more')
     await page.screenshot()
     html = await page.content()
-    with open('temp.html', 'w', encoding='utf-8') as write_file:
+    with open(sys.path[1] + '/module/API/temp.html', 'w', encoding='utf-8') as write_file:
         write_file.write(html)
     await browser.close()
 
@@ -43,7 +44,7 @@ def get_location():
     """
 
     asyncio.get_event_loop().run_until_complete(get_html())
-    with open('temp.html', 'r', encoding='utf-8') as open_file:
+    with open(sys.path[1] + '/module/API/temp.html', 'r', encoding='utf-8') as open_file:
         data = open_file.read()
     soup = BeautifulSoup(data, 'html.parser')
     element = soup.find(attrs={'class': 'c-severe-news-item__a'}).get('href')
