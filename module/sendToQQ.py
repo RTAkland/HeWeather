@@ -37,7 +37,6 @@ def send_msg(_type, qq):
     
     数据来自: 和风天气
     """
-    print(weather_req)
     if _type == 'p':
         requests.get(f'http://127.0.0.1:5700/send_private_msg?user_id={qq}&message={weather_info}')
     else:
