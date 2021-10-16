@@ -105,12 +105,5 @@ only-view-settings:
 
 
 
-# EXTRA:
-
-
-# # # # # # # # # # # # # # # # #
-#                               #
-#     EXTRA IS NOT AVAILABLE    #
-#                               #
-# # # # # # # # # # # # # # # # #
-
+EXTRA:
+  -ToQQ: false
