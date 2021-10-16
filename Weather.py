@@ -21,7 +21,7 @@ from multiprocessing import Process
 import requests
 from ruamel.yaml import YAML
 from module import force_get_location
-from module.API import API_get_warning_list
+from module import API_get_warning_list
 
 
 class SendWeatherMail:
