@@ -108,6 +108,7 @@ only-view-settings:
 EXTRA:
   QQBOT:
    # 通过go-cqhttp发送信息到QQ
+   # 此项使用起来很麻烦建议不要弄
    # 开启此项会占用系统两个端口： 5700 8000
     ToQQ: false
    # 发送延迟单位： 小时
