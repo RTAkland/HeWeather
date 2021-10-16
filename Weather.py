@@ -461,7 +461,7 @@ def check_config():
 def runQQBot():
     system = os.name
     if system == 'linux':
-        os.system(sys.path[1] + '/module/QQBot/QQBotQQBot.sh')
+        os.system(sys.path[1] + '/module/QQBot/sh QQBot.sh')
     else:
         print(f'{get_log_time()}当前并未加入windows版本的QQBot')
 
