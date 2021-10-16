@@ -5,4 +5,4 @@
 venv/
 __pychache__/
 *.pyc
-
+**.ldb
