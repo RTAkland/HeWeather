@@ -8,10 +8,8 @@
 
 import argparse
 import json
-import os
 import random
 import smtplib
-import subprocess
 import sys
 import time
 from email.header import Header
@@ -24,6 +22,7 @@ import requests
 from ruamel.yaml import YAML
 from module import force_get_location
 from module.API import API_get_warning_list
+from module import sendToQQ
 
 
 class SendWeatherMail:
@@ -459,12 +458,8 @@ def check_config():
             sys.exit(1)
 
 
-# def runQQBot():
-#     system = os.name
-#     if system == 'linux':
-#         subprocess.Popen('cd ./module/QQBot')
-#     else:
-#         print(f'{get_log_time()}当前并未加入windows版本的QQBot')
+def runQQBot():
+    sendToQQ.rev_msg_manual()
 
 
 if __name__ == '__main__':
@@ -477,6 +472,8 @@ if __name__ == '__main__':
     check_config()
     icon_style = my_config['other-settings']['icon-style']
     QQBot = my_config['EXTRA']['QQBOT']['ToQQ']
+    if QQBot:
+        QQBot_delay = int(my_config['EXTRA']['QQBot']['delay']) * 60  # 配置文件内单位是小时
 
     if icon_style not in ['set-1-bw', 'set-1-color', 'set-2', 'random']:
         print(f'{get_log_time()}[ERROR]图标文件错误请检查配置文件填写是否正确...')
@@ -514,7 +511,7 @@ if __name__ == '__main__':
     send_time = my_config['other-settings']['send-times']
     # 使用多进程来实现发送正常天气和每10分钟一次的检查自然灾害预报
     Process(target=run, args=(my_config['request-settings']['mode'], send_time,)).start()
-    # Process(target=runQQBot)
+    Process(target=runQQBot)
 
     # 启动时检查一次
     SendWeatherMail().warning_send_mail()
