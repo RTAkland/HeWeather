@@ -460,11 +460,10 @@ def check_config():
 
 def runQQBot():
     system = os.name
-    if system == 'nt':
-        os.system(sys.path[1] + '/module/QQBot/QQBot-windows/go-cqhttp.exe')
+    if system == 'linux':
+        os.system(sys.path[1] + '/module/QQBot/QQBotQQBot.sh')
     else:
-        os.system(sys.path[1] + '/module/QQBot/QQBot-linux/QQBot.sh')
-
+        print(f'{get_log_time()}当前并未加入windows版本的QQBot')
 
 if __name__ == '__main__':
     yaml = YAML()
