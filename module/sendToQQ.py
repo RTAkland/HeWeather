@@ -65,5 +65,3 @@ def rev_msg_manual():
                     if message == _keyword:
                         send_msg('g', group_id)
 
-
-rev_msg_manual()
