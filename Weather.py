@@ -465,6 +465,7 @@ def runQQBot():
     else:
         print(f'{get_log_time()}当前并未加入windows版本的QQBot')
 
+
 if __name__ == '__main__':
     yaml = YAML()
     my_config_file = 'config.yml'
