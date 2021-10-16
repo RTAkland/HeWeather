@@ -22,6 +22,15 @@ def down(system):
 
 
 if __name__ == '__main__':
-    print('正在下载文件中...')
-    down(os.name)
-    print('执行完成...')
+    OS = os.name
+    if OS == 'nt':
+        if os.path.isfile('go-cqhttp.exe'):
+            print('正在下载文件中...')
+            down(OS)
+            print('文件下载完成...')
+    else:
+        if os.path.isfile('go-cqhttp-linux'):
+            print('正在下载文件中...')
+            down(OS)
+            print('文件下载完成...')
+
