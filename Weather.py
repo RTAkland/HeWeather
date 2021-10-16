@@ -11,6 +11,7 @@ import json
 import os
 import random
 import smtplib
+import subprocess
 import sys
 import time
 from email.header import Header
@@ -458,12 +459,12 @@ def check_config():
             sys.exit(1)
 
 
-def runQQBot():
-    system = os.name
-    if system == 'linux':
-        os.system(sys.path[1] + '/module/QQBot/sh QQBot.sh')
-    else:
-        print(f'{get_log_time()}当前并未加入windows版本的QQBot')
+# def runQQBot():
+#     system = os.name
+#     if system == 'linux':
+#         subprocess.Popen('cd ./module/QQBot')
+#     else:
+#         print(f'{get_log_time()}当前并未加入windows版本的QQBot')
 
 
 if __name__ == '__main__':
@@ -513,7 +514,7 @@ if __name__ == '__main__':
     send_time = my_config['other-settings']['send-times']
     # 使用多进程来实现发送正常天气和每10分钟一次的检查自然灾害预报
     Process(target=run, args=(my_config['request-settings']['mode'], send_time,)).start()
-    Process(target=runQQBot)
+    # Process(target=runQQBot)
 
     # 启动时检查一次
     SendWeatherMail().warning_send_mail()
