@@ -7,8 +7,11 @@
 import json
 import socket
 import sys
+import time
 import requests
 from ruamel.yaml import YAML
+
+print(f'{time.strftime("[%H:%M:%S]", time.localtime())}QQBot Running')
 
 yaml = YAML()
 with open(sys.path[1] + '/config.yml') as f:
