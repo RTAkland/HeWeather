@@ -6,3 +6,14 @@ venv/
 __pychache__/
 *.pyc
 *.ldb
+*.bak
+module/QQBot/*
+!module/QQBot/config.yml
+!module/QQBot/device.json
+!module/QQBot/Download-core.sh
+!module/QQBot/download-QQBot-core.py
+!module/QQBot/QQBot.bat
+!module/QQBot/QQBot.sh
+!module/QQBot/session.token
+
+
