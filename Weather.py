@@ -8,6 +8,7 @@
 
 import argparse
 import json
+import os
 import random
 import smtplib
 import sys
@@ -457,6 +458,14 @@ def check_config():
             sys.exit(1)
 
 
+def runQQBot():
+    system = os.name
+    if system == 'nt':
+        os.system(sys.path[1] + '/module/QQBot/QQBot-windows/go-cqhttp.exe')
+    else:
+        os.system(sys.path[1] + '/module/QQBot/QQBot-linux/QQBot.sh')
+
+
 if __name__ == '__main__':
     yaml = YAML()
     my_config_file = 'config.yml'
@@ -466,6 +475,7 @@ if __name__ == '__main__':
         my_config = yaml.load(f)
     check_config()
     icon_style = my_config['other-settings']['icon-style']
+    QQBot = my_config['EXTRA']['QQBOT']['ToQQ']
 
     if icon_style not in ['set-1-bw', 'set-1-color', 'set-2', 'random']:
         print(f'{get_log_time()}[ERROR]图标文件错误请检查配置文件填写是否正确...')
@@ -502,14 +512,14 @@ if __name__ == '__main__':
 
     send_time = my_config['other-settings']['send-times']
     # 使用多进程来实现发送正常天气和每10分钟一次的检查自然灾害预报
-    executor = Process(target=run, args=(my_config['request-settings']['mode'], send_time,))
-    executor.start()
-    time_count = 0
+    Process(target=run, args=(my_config['request-settings']['mode'], send_time,)).start()
+    Process(target=runQQBot)
 
     # 启动时检查一次
     SendWeatherMail().warning_send_mail()
 
     # 每10分钟检查一次自然灾害预报 在运行程序的时候也会检查一次
+    time_count = 0
     while True:
         time.sleep(1)
         time_count += 1
