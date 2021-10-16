@@ -22,7 +22,6 @@ import requests
 from ruamel.yaml import YAML
 from module import force_get_location
 from module.API import API_get_warning_list
-from module import sendToQQ
 
 
 class SendWeatherMail:
@@ -44,20 +43,17 @@ class SendWeatherMail:
         if arg_test == 'war-force':  # 如果运行参数是war-force则替换self.location
             if self.mode != 'dev':  # 如果发送模式不是dev则使用爬虫方式获取城市id
                 self.location = force_get_location.get_location()
-
             self.location = API_get_warning_list.get_warning_list()[1]
-
         self.Dev_Link = f'https://devapi.qweather.com/v7/weather/7d?location=' \
                         f'{self.location}&key={self.key}&unit={self.unit}&lang={self.lang}'
 
         self.indices = f'https://devapi.qweather.com/v7/indices/1d?type=1,2&location=' \
                        f'{self.location}&key={self.key}&unit={self.unit}&lang={self.lang}'
 
-        self.Free_Link = f'https://devapi.qweather.com/v7/weather/3d?location=' \
+        self.Free_Link = f'https://devapi.qweather.com/v7/weather/3d?location='\
                          f'{self.location}&key={self.key}&unit={self.unit}&lang={self.lang} '
 
         self.codes = json.loads(open('./assets/resources/code.json', 'r', encoding='utf-8').read())
-
         self.message = MIMEMultipart('related')
         self.message['From'] = Header('HeWeatherReporter')  # 发件人名称
         self.message['To'] = Header('All allowed User')  # 收件人显示名称
@@ -458,10 +454,6 @@ def check_config():
             sys.exit(1)
 
 
-def runQQBot():
-    sendToQQ.rev_msg_manual()
-
-
 if __name__ == '__main__':
     yaml = YAML()
     my_config_file = 'config.yml'
@@ -471,9 +463,6 @@ if __name__ == '__main__':
         my_config = yaml.load(f)
     check_config()
     icon_style = my_config['other-settings']['icon-style']
-    QQBot = my_config['EXTRA']['QQBOT']['ToQQ']
-    if QQBot:
-        QQBot_delay = int(my_config['EXTRA']['QQBot']['delay']) * 60  # 配置文件内单位是小时
 
     if icon_style not in ['set-1-bw', 'set-1-color', 'set-2', 'random']:
         print(f'{get_log_time()}[ERROR]图标文件错误请检查配置文件填写是否正确...')
@@ -511,7 +500,6 @@ if __name__ == '__main__':
     send_time = my_config['other-settings']['send-times']
     # 使用多进程来实现发送正常天气和每10分钟一次的检查自然灾害预报
     Process(target=run, args=(my_config['request-settings']['mode'], send_time,)).start()
-    Process(target=runQQBot)
 
     # 启动时检查一次
     SendWeatherMail().warning_send_mail()
