@@ -3,33 +3,36 @@
 # @Author: markushammered@gmail.com
 # @Development Tool: PyCharm
 # @Create Time: 2021/10/16
-# @File Name: server.py
+# @File Name: sendToQQ.py
 import json
 import socket
 import sys
 import requests
 from ruamel.yaml import YAML
 
+yaml = YAML()
+with open(sys.path[1] + '/config.yml') as f:
+    config = yaml.load(f.read())
+    key = config['request-settings']['key']
+    location = config['request-settings']['location']
+    city_name = config['only-view-settings']['city-name']
+    _keyword = config['EXTRA']['QQBOT']['keyword']
+
 
 def send_msg(_type, qq):
-    yaml = YAML()
-    with open(sys.path[1] + '/config.yml') as f:
-        config = yaml.load(f.read())
-        key = config['request-settings']['key']
-        location = config['request-settings']['location']
-        city_name = config['only-view-settings']['city-name']
-
-    weather_req = json.loads(requests.get(f'https://devapi.qweather.com/v7/weather/now?location=101010100&key'
-                                          f'=0657f6982c5b49bf9a3bfc0efd7e1802').text)
+    r = requests.get(f'https://devapi.qweather.com/v7/weather/now?location={location}&key={key}').text
+    weather_req = json.loads(r)
     weather_info = f"""
     地区:{city_name}
-    更新时间:今天{weather_req['updateTime'][10:-6].replace('T', ' ')}
+    更新时间:今天{weather_req['updateTime'][10:-6]}
     当前天气:{weather_req['now']['text']}
     当前温度:{weather_req['now']['temp']}℃
     风向:{weather_req['now']['windDir']}
     风速:{weather_req['now']['windSpeed']}m/s
     空气湿度:{weather_req['now']['humidity']}%
     气压:{weather_req['now']['pressure']}Pa
+    
+    数据来自: 和风天气
     """
     print(weather_req)
     if _type == 'p':
@@ -59,7 +62,7 @@ def rev_msg_manual():
                     group_id = msg.split(':')[11].split(',')[0]
                     # sender_id = msg.split(':')[28].split(',')[0][:-1]  # at ones Not available
                     message = msg.split(':')[12].split(',')[0][1:-1]
-                    if message == '!!tq':
+                    if message == _keyword:
                         send_msg('g', group_id)
 
 
