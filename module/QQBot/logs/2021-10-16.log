@@ -1,0 +1,49 @@
+[2021-10-16 15:07:57] [WARNING]: 检查更新失败！ 
+[2021-10-16 15:07:59] [WARNING]: 上报Event到 HTTP 服务器 127.0.0.1:8000 时出现错误: Post "http://127.0.0.1:8000": EOF 将重试. 
+[2021-10-16 15:07:59] [WARNING]: 上报Event数据 {"font":0,"message":"!!tq","message_id":2086313695,"message_type":"private","post_type":"message","raw_message":"!!tq","self_id":1845464277,"sender":{"age":0,"nickname":"Render","sex":"unknown","user_id":3458671395},"sub_type":"friend","target_id":1845464277,"time":1634368078,"user_id":3458671395}
+ 到 127.0.0.1:8000 失败: Post "http://127.0.0.1:8000": EOF 
+[2021-10-16 15:08:02] [WARNING]: 上报Event到 HTTP 服务器 127.0.0.1:8000 时出现错误: Post "http://127.0.0.1:8000": EOF 将重试. 
+[2021-10-16 15:08:02] [WARNING]: 上报Event数据 {"font":0,"message":"!!tq","message_id":-712575227,"message_type":"private","post_type":"message","raw_message":"!!tq","self_id":1845464277,"sender":{"age":0,"nickname":"Render","sex":"unknown","user_id":3458671395},"sub_type":"friend","target_id":1845464277,"time":1634368079,"user_id":3458671395}
+ 到 127.0.0.1:8000 失败: Post "http://127.0.0.1:8000": EOF 
+[2021-10-16 15:08:02] [WARNING]: 上报Event到 HTTP 服务器 127.0.0.1:8000 时出现错误: Post "http://127.0.0.1:8000": EOF 将重试. 
+[2021-10-16 15:08:02] [WARNING]: 上报Event数据 {"interval":5000,"meta_event_type":"heartbeat","post_type":"meta_event","self_id":1845464277,"status":{"app_enabled":true,"app_good":true,"app_initialized":true,"good":true,"online":true,"plugins_good":null,"stat":{"packet_received":45,"packet_sent":36,"packet_lost":0,"message_received":2,"message_sent":2,"disconnect_times":1,"lost_times":0,"last_message_time":1634368079}},"time":1634368082}
+ 到 127.0.0.1:8000 失败: Post "http://127.0.0.1:8000": EOF 
+[2021-10-16 15:08:07] [WARNING]: 上报Event到 HTTP 服务器 127.0.0.1:8000 时出现错误: Post "http://127.0.0.1:8000": EOF 将重试. 
+[2021-10-16 15:08:07] [WARNING]: 上报Event数据 {"font":0,"message":"!!tq","message_id":-1568553069,"message_type":"private","post_type":"message","raw_message":"!!tq","self_id":1845464277,"sender":{"age":0,"nickname":"Render","sex":"unknown","user_id":3458671395},"sub_type":"friend","target_id":1845464277,"time":1634368082,"user_id":3458671395}
+ 到 127.0.0.1:8000 失败: Post "http://127.0.0.1:8000": EOF 
+[2021-10-16 15:08:10] [WARNING]: 上报Event到 HTTP 服务器 127.0.0.1:8000 时出现错误: Post "http://127.0.0.1:8000": EOF 将重试. 
+[2021-10-16 15:08:10] [WARNING]: 上报Event数据 {"interval":5000,"meta_event_type":"heartbeat","post_type":"meta_event","self_id":1845464277,"status":{"app_enabled":true,"app_good":true,"app_initialized":true,"good":true,"online":true,"plugins_good":null,"stat":{"packet_received":52,"packet_sent":42,"packet_lost":0,"message_received":3,"message_sent":3,"disconnect_times":1,"lost_times":0,"last_message_time":1634368082}},"time":1634368087}
+ 到 127.0.0.1:8000 失败: Post "http://127.0.0.1:8000": EOF 
+[2021-10-16 15:08:12] [WARNING]: 上报Event到 HTTP 服务器 127.0.0.1:8000 时出现错误: Post "http://127.0.0.1:8000": EOF 将重试. 
+[2021-10-16 15:08:12] [WARNING]: 上报Event数据 {"font":0,"message":"!!tq","message_id":998807081,"message_type":"private","post_type":"message","raw_message":"!!tq","self_id":1845464277,"sender":{"age":0,"nickname":"Render","sex":"unknown","user_id":3458671395},"sub_type":"friend","target_id":1845464277,"time":1634368090,"user_id":3458671395}
+ 到 127.0.0.1:8000 失败: Post "http://127.0.0.1:8000": EOF 
+[2021-10-16 15:08:17] [WARNING]: 上报Event到 HTTP 服务器 127.0.0.1:8000 时出现错误: Post "http://127.0.0.1:8000": context deadline exceeded 将重试. 
+[2021-10-16 15:08:17] [WARNING]: 上报Event数据 {"interval":5000,"meta_event_type":"heartbeat","post_type":"meta_event","self_id":1845464277,"status":{"app_enabled":true,"app_good":true,"app_initialized":true,"good":true,"online":true,"plugins_good":null,"stat":{"packet_received":62,"packet_sent":51,"packet_lost":0,"message_received":4,"message_sent":4,"disconnect_times":1,"lost_times":0,"last_message_time":1634368090}},"time":1634368092}
+ 到 127.0.0.1:8000 失败: Post "http://127.0.0.1:8000": context deadline exceeded 
+[2021-10-16 15:08:22] [WARNING]: 上报Event到 HTTP 服务器 127.0.0.1:8000 时出现错误: Post "http://127.0.0.1:8000": context deadline exceeded 将重试. 
+[2021-10-16 15:08:22] [WARNING]: 上报Event数据 {"interval":5000,"meta_event_type":"heartbeat","post_type":"meta_event","self_id":1845464277,"status":{"app_enabled":true,"app_good":true,"app_initialized":true,"good":true,"online":true,"plugins_good":null,"stat":{"packet_received":63,"packet_sent":52,"packet_lost":0,"message_received":4,"message_sent":4,"disconnect_times":1,"lost_times":0,"last_message_time":1634368090}},"time":1634368097}
+ 到 127.0.0.1:8000 失败: Post "http://127.0.0.1:8000": context deadline exceeded 
+[2021-10-16 15:08:24] [WARNING]: 上报Event到 HTTP 服务器 127.0.0.1:8000 时出现错误: Post "http://127.0.0.1:8000": EOF 将重试. 
+[2021-10-16 15:08:24] [WARNING]: 上报Event数据 {"interval":5000,"meta_event_type":"heartbeat","post_type":"meta_event","self_id":1845464277,"status":{"app_enabled":true,"app_good":true,"app_initialized":true,"good":true,"online":true,"plugins_good":null,"stat":{"packet_received":65,"packet_sent":54,"packet_lost":0,"message_received":4,"message_sent":4,"disconnect_times":1,"lost_times":0,"last_message_time":1634368090}},"time":1634368102}
+ 到 127.0.0.1:8000 失败: Post "http://127.0.0.1:8000": EOF 
+[2021-10-16 15:08:27] [WARNING]: 上报Event到 HTTP 服务器 127.0.0.1:8000 时出现错误: Post "http://127.0.0.1:8000": EOF 将重试. 
+[2021-10-16 15:08:27] [WARNING]: 上报Event数据 {"font":0,"message":"\n    今天天气\n    很好\n    你就哦u的呢\n    我也决赛哦对方和哦啊","message_id":-1511259254,"message_type":"private","post_type":"message","raw_message":"\n    今天天气\n    很好\n    你就哦u的呢\n    我也决赛哦对方和哦啊","self_id":1845464277,"sender":{"age":0,"nickname":"Render","sex":"unknown","user_id":3458671395},"sub_type":"friend","target_id":1845464277,"time":1634368104,"user_id":3458671395}
+ 到 127.0.0.1:8000 失败: Post "http://127.0.0.1:8000": EOF 
+[2021-10-16 15:08:32] [WARNING]: 上报Event到 HTTP 服务器 127.0.0.1:8000 时出现错误: Post "http://127.0.0.1:8000": context deadline exceeded 将重试. 
+[2021-10-16 15:08:32] [WARNING]: 上报Event数据 {"interval":5000,"meta_event_type":"heartbeat","post_type":"meta_event","self_id":1845464277,"status":{"app_enabled":true,"app_good":true,"app_initialized":true,"good":true,"online":true,"plugins_good":null,"stat":{"packet_received":71,"packet_sent":59,"packet_lost":0,"message_received":5,"message_sent":4,"disconnect_times":1,"lost_times":0,"last_message_time":1634368104}},"time":1634368107}
+ 到 127.0.0.1:8000 失败: Post "http://127.0.0.1:8000": context deadline exceeded 
+[2021-10-16 15:08:37] [WARNING]: 上报Event到 HTTP 服务器 127.0.0.1:8000 时出现错误: Post "http://127.0.0.1:8000": context deadline exceeded 将重试. 
+[2021-10-16 15:08:37] [WARNING]: 上报Event数据 {"interval":5000,"meta_event_type":"heartbeat","post_type":"meta_event","self_id":1845464277,"status":{"app_enabled":true,"app_good":true,"app_initialized":true,"good":true,"online":true,"plugins_good":null,"stat":{"packet_received":73,"packet_sent":61,"packet_lost":0,"message_received":5,"message_sent":4,"disconnect_times":1,"lost_times":0,"last_message_time":1634368104}},"time":1634368112}
+ 到 127.0.0.1:8000 失败: Post "http://127.0.0.1:8000": context deadline exceeded 
+[2021-10-16 15:08:42] [WARNING]: 上报Event到 HTTP 服务器 127.0.0.1:8000 时出现错误: Post "http://127.0.0.1:8000": context deadline exceeded 将重试. 
+[2021-10-16 15:08:42] [WARNING]: 上报Event数据 {"interval":5000,"meta_event_type":"heartbeat","post_type":"meta_event","self_id":1845464277,"status":{"app_enabled":true,"app_good":true,"app_initialized":true,"good":true,"online":true,"plugins_good":null,"stat":{"packet_received":75,"packet_sent":63,"packet_lost":0,"message_received":5,"message_sent":4,"disconnect_times":1,"lost_times":0,"last_message_time":1634368104}},"time":1634368117}
+ 到 127.0.0.1:8000 失败: Post "http://127.0.0.1:8000": context deadline exceeded 
+[2021-10-16 15:08:47] [WARNING]: 上报Event到 HTTP 服务器 127.0.0.1:8000 时出现错误: Post "http://127.0.0.1:8000": context deadline exceeded 将重试. 
+[2021-10-16 15:08:47] [WARNING]: 上报Event数据 {"interval":5000,"meta_event_type":"heartbeat","post_type":"meta_event","self_id":1845464277,"status":{"app_enabled":true,"app_good":true,"app_initialized":true,"good":true,"online":true,"plugins_good":null,"stat":{"packet_received":75,"packet_sent":63,"packet_lost":0,"message_received":5,"message_sent":4,"disconnect_times":1,"lost_times":0,"last_message_time":1634368104}},"time":1634368122}
+ 到 127.0.0.1:8000 失败: Post "http://127.0.0.1:8000": context deadline exceeded 
+[2021-10-16 15:08:52] [WARNING]: 上报Event到 HTTP 服务器 127.0.0.1:8000 时出现错误: Post "http://127.0.0.1:8000": context deadline exceeded 将重试. 
+[2021-10-16 15:08:52] [WARNING]: 上报Event数据 {"interval":5000,"meta_event_type":"heartbeat","post_type":"meta_event","self_id":1845464277,"status":{"app_enabled":true,"app_good":true,"app_initialized":true,"good":true,"online":true,"plugins_good":null,"stat":{"packet_received":75,"packet_sent":63,"packet_lost":0,"message_received":5,"message_sent":4,"disconnect_times":1,"lost_times":0,"last_message_time":1634368104}},"time":1634368127}
+ 到 127.0.0.1:8000 失败: Post "http://127.0.0.1:8000": context deadline exceeded 
+[2021-10-16 15:08:54] [WARNING]: 上报Event到 HTTP 服务器 127.0.0.1:8000 时出现错误: Post "http://127.0.0.1:8000": EOF 将重试. 
+[2021-10-16 15:08:54] [WARNING]: 上报Event数据 {"interval":5000,"meta_event_type":"heartbeat","post_type":"meta_event","self_id":1845464277,"status":{"app_enabled":true,"app_good":true,"app_initialized":true,"good":true,"online":true,"plugins_good":null,"stat":{"packet_received":75,"packet_sent":63,"packet_lost":0,"message_received":5,"message_sent":4,"disconnect_times":1,"lost_times":0,"last_message_time":1634368104}},"time":1634368132}
+ 到 127.0.0.1:8000 失败: Post "http://127.0.0.1:8000": EOF 
