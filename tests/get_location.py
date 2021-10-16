@@ -1,7 +1,9 @@
 #!/usr/bin/env python
-# -- coding:utf-8 --
-# @Date: 2021/10/1 13:33
-# @File: get_location.py
+# -*- coding: utf-8 -*-
+# @Author: markushammered@gmail.com
+# @Development Tool: PyCharm
+# @Create Time: 2021/9/29
+# @File Name: get_location.py
 
 
 from requests import Session

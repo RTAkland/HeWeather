@@ -1,7 +1,9 @@
 #!/usr/bin/env python
-# -- coding:utf-8 --
-# @Date: 2021/10/6 17:12
-# @File: force_get_location.py
+# -*- coding: utf-8 -*-
+# @Author: markushammered@gmail.com
+# @Development Tool: PyCharm
+# @Create Time: 2021/9/29
+# @File Name: force_get_location.py
 
 import asyncio
 import os

@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# @Time : 2021/10/13 下午8:45
-# @File: API_Real-time_air_quality.py
+# @Author: markushammered@gmail.com
+# @Development Tool: PyCharm
+# @Create Time: 2021/9/29
+# @File Name: API_Real-time_air_quality.py
 
 """
 开发版key获取实时空气质量

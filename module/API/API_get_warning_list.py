@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# @Time: 2021/10/13 下午9:18
-# @File: API_get_warning_list.py
+# @Author: markushammered@gmail.com
+# @Development Tool: PyCharm
+# @Create Time: 2021/9/29
+# @File Name: API_get_warning_list.py:
 
 """
 开发版key使用此API可以快速返回正在预警的城市id
