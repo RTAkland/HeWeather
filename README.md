@@ -11,7 +11,7 @@
 
 ## 关于config.yml文件中EXTRA项的使用
 - 进入`module/QQBot/` 双击`download-QQBot-core.py` 下载核心. 程序会根据你的系统自动选择版本(Mac OS 除外)
-- 如果你的系统是`Windows` 那就双击同文件夹的`QQBot.bat` 反之 打开终端输入`sh QQBot.sh` 运行
+- 如果你的系统是`Windows` 那就双击同文件夹的`QQBot.bat` 反之 打开终端输入`sh QQBot.sh` 运行程序
 
 # Usage
 - Run the program using Python3.x
