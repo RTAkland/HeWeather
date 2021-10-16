@@ -1,7 +1,0 @@
-[2021-10-16 14:16:36] [WARNING]: 检查更新失败！ 
-[2021-10-16 14:16:40] [WARNING]: 上报Event到 HTTP 服务器 127.0.0.1:8000 时出现错误: Post "http://127.0.0.1:8000": dial tcp 127.0.0.1:8000: connect: connection refused 将重试. 
-[2021-10-16 14:16:40] [WARNING]: 上报Event数据 {"interval":5000,"meta_event_type":"heartbeat","post_type":"meta_event","self_id":1845464277,"status":{"app_enabled":true,"app_good":true,"app_initialized":true,"good":true,"online":true,"plugins_good":null,"stat":{"packet_received":18,"packet_sent":13,"packet_lost":0,"message_received":0,"message_sent":0,"disconnect_times":1,"lost_times":0,"last_message_time":0}},"time":1634365000}
- 到 127.0.0.1:8000 失败: Post "http://127.0.0.1:8000": dial tcp 127.0.0.1:8000: connect: connection refused 
-[2021-10-16 14:16:45] [WARNING]: 上报Event到 HTTP 服务器 127.0.0.1:8000 时出现错误: Post "http://127.0.0.1:8000": dial tcp 127.0.0.1:8000: connect: connection refused 将重试. 
-[2021-10-16 14:16:45] [WARNING]: 上报Event数据 {"interval":5000,"meta_event_type":"heartbeat","post_type":"meta_event","self_id":1845464277,"status":{"app_enabled":true,"app_good":true,"app_initialized":true,"good":true,"online":true,"plugins_good":null,"stat":{"packet_received":18,"packet_sent":13,"packet_lost":0,"message_received":0,"message_sent":0,"disconnect_times":1,"lost_times":0,"last_message_time":0}},"time":1634365005}
- 到 127.0.0.1:8000 失败: Post "http://127.0.0.1:8000": dial tcp 127.0.0.1:8000: connect: connection refused 

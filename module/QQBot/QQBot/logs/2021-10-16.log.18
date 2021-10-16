@@ -1,4 +1,0 @@
-[2021-10-16 14:31:59] [WARNING]: 检查更新失败！ 
-[2021-10-16 14:32:00] [WARNING]: 上报Event到 HTTP 服务器 127.0.0.1:8000 时出现错误: Post "http://127.0.0.1:8000": EOF 将重试. 
-[2021-10-16 14:32:00] [WARNING]: 上报Event数据 {"font":0,"message":"!!private","message_id":492186873,"message_type":"private","post_type":"message","raw_message":"!!private","self_id":1845464277,"sender":{"age":0,"nickname":"Render","sex":"unknown","user_id":3458671395},"sub_type":"friend","target_id":1845464277,"time":1634365920,"user_id":3458671395}
- 到 127.0.0.1:8000 失败: Post "http://127.0.0.1:8000": EOF 
