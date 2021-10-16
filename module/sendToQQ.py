@@ -19,7 +19,7 @@ with open(sys.path[1] + '/config.yml') as f:
     key = config['request-settings']['key']
     location = config['request-settings']['location']
     city_name = config['only-view-settings']['city-name']
-    _keyword = config['EXTRA']['QQBOT']['keyword']
+    _keyword = config['EXTRA']['QQBOT']['Keyword']
 
 
 def send_msg(_type, qq):
