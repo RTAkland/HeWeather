@@ -20,7 +20,7 @@ from multiprocessing import Process
 
 import requests
 from ruamel.yaml import YAML
-from module import force_get_location
+from module import API_get_locationID
 from module import API_get_warning_list
 
 
@@ -42,7 +42,7 @@ class SendWeatherMail:
 
         if arg_test == 'war-force':  # 如果运行参数是war-force则替换self.location
             if self.mode != 'dev':  # 如果发送模式不是dev则使用爬虫方式获取城市id
-                self.location = force_get_location.get_location()
+                self.location = API_get_locationID.get_location()
             self.location = API_get_warning_list.get_warning_list()[1]
         self.Dev_Link = f'https://devapi.qweather.com/v7/weather/7d?location=' \
                         f'{self.location}&key={self.key}&unit={self.unit}&lang={self.lang}'
