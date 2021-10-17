@@ -3,7 +3,7 @@
 # @Author: markushammered@gmail.com
 # @Development Tool: PyCharm
 # @Create Time: 2021/9/29
-# @File Name: API_Real-time_air_quality.py
+# @File Name: API_real_time_air_quality.py
 
 """
 开发版key获取实时空气质量

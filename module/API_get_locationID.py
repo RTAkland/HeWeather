@@ -3,7 +3,7 @@
 # @Author: markushammered@gmail.com
 # @Development Tool: PyCharm
 # @Create Time: 2021/9/29
-# @File Name: force_get_location.py
+# @File Name: API_get_locationID.py
 
 import asyncio
 import os
