@@ -15,6 +15,7 @@ import requests
 import json
 from ruamel.yaml import YAML
 
+
 def get_warning_list(_range='cn'):
     yaml = YAML()
     with open(sys.path[1] + '/config.yml', 'r', encoding='utf-8') as f:
