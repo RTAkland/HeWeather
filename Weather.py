@@ -50,7 +50,7 @@ class SendWeatherMail:
         self.indices = f'https://devapi.qweather.com/v7/indices/1d?type=1,2&location=' \
                        f'{self.location}&key={self.key}&unit={self.unit}&lang={self.lang}'
 
-        self.Free_Link = f'https://devapi.qweather.com/v7/weather/3d?location='\
+        self.Free_Link = f'https://devapi.qweather.com/v7/weather/3d?location=' \
                          f'{self.location}&key={self.key}&unit={self.unit}&lang={self.lang} '
 
         self.codes = json.loads(open('./assets/resources/code.json', 'r', encoding='utf-8').read())
@@ -76,7 +76,7 @@ class SendWeatherMail:
         iconDay : 白天的天气图标
         iconNight : 夜间的天气图标
         returnCode : 返回代码
-        :return: None
+        :return:
         """
         r_day = requests.get(self.Dev_Link, headers={'Accept-Encoding': 'gzip'}).text
         r_indices = requests.get(self.indices, headers={'Accept-Encoding': 'gzip'}).text
@@ -84,13 +84,13 @@ class SendWeatherMail:
         weather_indices = json.loads(r_indices)
         returnCode_weather = weather_day_text['code']
         returnCode_indices = weather_indices['code']
-        print(f'{get_log_time()}天气信息请求结果:{self.codes[returnCode_weather]} '
+        print(f'{Other().log_time}天气信息请求结果:{self.codes[returnCode_weather]} '
               f'生活建议请求结果:{self.codes[returnCode_indices]}')
         indices = weather_indices['daily'][0]
         daily_type = f'{indices["name"]}:{indices["category"]}'  # 指数类型 & 建议
         try:
             indices_tip = indices['text']
-        except KeyError:
+        except ValueError:
             indices_tip = '无具体描述'
 
         # 1-7天数据
@@ -234,14 +234,14 @@ class SendWeatherMail:
             self.smtp.login(self.sender, self.password)  # 登录
             self.smtp.sendmail(self.sender, self.receiver, self.message.as_string())  # 发送
         except smtplib.SMTPException as e:
-            print(f'{get_log_time()}邮件发送错误', e)
+            print(f'{Other().log_time}邮件发送错误', e)
 
     # 免费版本
     def Free_mode(self):
         f_request = requests.get(self.Free_Link, headers={'Accept-Encoding': 'gzip'}).text
         f_weather = json.loads(f_request)
         returnCode_weather = f_weather['code']
-        print(f'{get_log_time()}天气信息请求结果:{self.codes[returnCode_weather]}')
+        print(f'{Other().log_time}天气信息请求结果:{self.codes[returnCode_weather]}')
 
         day_1 = f_weather['daily'][0]
         day_2 = f_weather['daily'][1]
@@ -326,7 +326,7 @@ class SendWeatherMail:
             self.smtp.login(self.sender, self.password)
             self.smtp.sendmail(self.sender, self.receiver, self.message.as_string())
         except smtplib.SMTPException as e:
-            print(f'{get_log_time()}邮件发送错误', e)
+            print(f'{Other().log_time}邮件发送错误', e)
 
     # 获取自然灾害
     def warning_send_mail(self):
@@ -349,25 +349,25 @@ class SendWeatherMail:
         r = requests.get(API_url, headers={'Accept-Encoding': 'gzip'}).text
         data = json.loads(r)
         returnCode_warning = data['code']
-        print(f'{get_log_time()}自然灾害API请求结果:{self.codes[returnCode_warning]}')
+        print(f'{Other().log_time}自然灾害API请求结果:{self.codes[returnCode_warning]}')
         if data['warning']:
-            releaseTime = data['warning'][0]['pubTime']
+            public_time = data['warning'][0]['pubTime']
             title = data['warning'][0]['title']
-            startTime = data['warning'][0]['startTime']
-            endTime = data['warning'][0]['endTime']
-            if not startTime:
-                startTime = None
-            elif not endTime:
-                endTime = None
+            start_time = data['warning'][0]['startTime']
+            end_time = data['warning'][0]['endTime']
+            if not start_time:
+                start_time = None
+            elif not end_time:
+                end_time = None
             status = data['warning'][0]['status']
             if status == 'update':
                 status = '[预警更新]'
-                print(f'{get_log_time()}预警信息已更新')
+                print(f'{Other().log_time}预警信息已更新')
             elif status == 'active':
                 status = '[新的预警]'
-                print(f'{get_log_time()}获取到新的灾害预警')
+                print(f'{Other().log_time}获取到新的灾害预警')
             elif status == 'cancel':
-                print(f'{get_log_time()}预警已取消')
+                print(f'{Other().log_time}预警已取消')
 
             level = data['warning'][0]['level']
             type_ = data['warning'][0]['type']
@@ -385,9 +385,9 @@ class SendWeatherMail:
             <body>
             <div style="text-align: center;color: black;">
                 <h2>{title}</h2>
-                <h3>预警发布时间:{releaseTime[:10]} {level}预警</h3>
+                <h3>预警发布时间:{public_time[:10]} {level}预警</h3>
                 <p>
-                    预警状态:{status} 预警类型:{type_} 持续时间:{startTime[:10]}-{endTime[:10]}
+                    预警状态:{status} 预警类型:{type_} 持续时间:{start_time[:10]}-{end_time[:10]}
                     <br />
                     {text}
                 </p>
@@ -403,69 +403,64 @@ class SendWeatherMail:
                     self.smtp.login(self.sender, self.password)
                     self.smtp.sendmail(self.sender, self.receiver, self.message.as_string())
             except smtplib.SMTPException as e:
-                print(f'{get_log_time()}邮件发送错误', e)
+                print(f'{Other().log_time}邮件发送错误', e)
 
 
-def get_log_time():
-    """
+class Other:
+    def __init__(self):
+        self.log_time = time.strftime("[%H:%M:%S]", time.localtime())
 
-    获取时间
-    :return:
-    """
-    return time.strftime("[%H:%M:%S]", time.localtime())
+    def run(self, run_mode, times):
+        """
 
+        循环检测时间如果本地时间等于配置文件内填写的时间则发送一封天气信息的邮件
+        :return:
+        """
+        if run_mode == 'dev':
+            while True:
+                time_local = time.strftime("%H:%M", time.localtime())
+                print(f'self.log_time运行中  发送模式: Dev 发送时间:{times}')
+                if time_local in times:
+                    SendWeatherMail().Dev_mode()
+                    print(f'{self.log_time}正在发送邮件...')
+                    time.sleep(61)
+        elif run_mode == 'free':
+            while True:
+                time_local = time.strftime("%H:%M", time.localtime())
+                print(f'{self.log_time}运行中  发送模式: Dev 发送时间:{times}')
+                if time_local in times:
+                    SendWeatherMail().Free_mode()
+                    print(f'{self.log_time}正在发送邮件...')
+                    time.sleep(61)
 
-def run(run_mode, times):
-    """
-
-    循环检测时间如果本地时间等于配置文件内填写的时间则发送一封天气信息的邮件
-    :return:
-    """
-    if run_mode == 'dev':
-        while True:
-            time_local = time.strftime("%H:%M", time.localtime())
-            print(f'{get_log_time()}运行中  发送模式: Dev 发送时间:{times}')
-            if time_local in times:
-                SendWeatherMail().Dev_mode()
-                print(f'{get_log_time()}正在发送邮件...')
-                time.sleep(61)
-    elif run_mode == 'free':
-        while True:
-            time_local = time.strftime("%H:%M", time.localtime())
-            print(f'{get_log_time()}运行中  发送模式: Dev 发送时间:{times}')
-            if time_local in times:
-                SendWeatherMail().Free_mode()
-                print(f'{get_log_time()}正在发送邮件...')
-                time.sleep(61)
-
-
-def check_config():
-    for mail in my_config['mail-settings'].values():
-        if mail is None:
-            print(f'{get_log_time()}[ERROR]"mail-settings"有未填写项...')
-            sys.exit(1)
-    for request in my_config['request-settings'].values():
-        if request is None:
-            print(f'{get_log_time()}[ERROR]"request-settings"有未填写项...')
-            sys.exit(1)
-    for other in my_config['other-settings'].values():
-        if other is None:
-            print(f'{get_log_time()}[ERROR]"request-settings"有未填写项...')
-            sys.exit(1)
+    def check_config(self):
+        for mail in my_config['mail-settings'].values():
+            if mail is None:
+                print(f'{self.log_time}[ERROR]"mail-settings"有未填写项...')
+                sys.exit(1)
+        for request in my_config['request-settings'].values():
+            if request is None:
+                print(f'{self.log_time}[ERROR]"request-settings"有未填写项...')
+                sys.exit(1)
+        for other in my_config['other-settings'].values():
+            if other is None:
+                print(f'{self.log_time}[ERROR]"request-settings"有未填写项...')
+                sys.exit(1)
 
 
 if __name__ == '__main__':
     yaml = YAML()
     my_config_file = 'config.yml'
 
-    print(f'{get_log_time()}请不要在配置文件中随意添加字符\n')
+    print(f'{Other().log_time}请不要在配置文件中随意添加字符\n')
     with open(my_config_file, 'r', encoding='utf-8') as f:
         my_config = yaml.load(f)
-    check_config()
+
+    Other().check_config()
     icon_style = my_config['other-settings']['icon-style']
 
     if icon_style not in ['set-1-bw', 'set-1-color', 'set-2', 'random']:
-        print(f'{get_log_time()}[ERROR]图标文件错误请检查配置文件填写是否正确...')
+        print(f'{Other().log_time}[ERROR]图标文件错误请检查配置文件填写是否正确...')
         sys.exit(1)
     elif icon_style == 'random':
         styles = ['set-1-bw', 'set-1-color', 'set-2']
@@ -482,24 +477,24 @@ if __name__ == '__main__':
     if arg_test:
         if arg_test == 'dev':
             SendWeatherMail().Dev_mode()
-            print(f'{get_log_time()}执行完成...')
+            print(f'{Other().log_time}执行完成...')
             sys.exit(0)
         elif arg_test == 'free':
             SendWeatherMail().Free_mode()
-            print(f'{get_log_time()}执行完成...')
+            print(f'{Other().log_time}执行完成...')
             sys.exit(0)
         elif arg_test == 'warning':
             SendWeatherMail().warning_send_mail()
-            print(f'{get_log_time()}执行完成...')
+            print(f'{Other().log_time}执行完成...')
             sys.exit(0)
         elif arg_test == 'war-force':
             SendWeatherMail().warning_send_mail()
-            print(f'{get_log_time()}执行完成...')
+            print(f'{Other().log_time}执行完成...')
             sys.exit(0)
 
     send_time = my_config['other-settings']['send-times']
     # 使用多进程来实现发送正常天气和每10分钟一次的检查自然灾害预报
-    Process(target=run, args=(my_config['request-settings']['mode'], send_time,)).start()
+    Process(target=Other.run, args=(my_config['request-settings']['mode'], send_time,)).start()
 
     # 启动时检查一次
     SendWeatherMail().warning_send_mail()
