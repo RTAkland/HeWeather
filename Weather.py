@@ -84,7 +84,7 @@ class SendWeatherMail:
         weather_indices = json.loads(r_indices)
         returnCode_weather = weather_day_text['code']
         returnCode_indices = weather_indices['code']
-        print(f'{Other().log_time}天气信息请求结果:{self.codes[returnCode_weather]} '
+        print(f'{RunProgram().log_time}天气信息请求结果:{self.codes[returnCode_weather]} '
               f'生活建议请求结果:{self.codes[returnCode_indices]}')
         indices = weather_indices['daily'][0]
         daily_type = f'{indices["name"]}:{indices["category"]}'  # 指数类型 & 建议
@@ -234,14 +234,14 @@ class SendWeatherMail:
             self.smtp.login(self.sender, self.password)  # 登录
             self.smtp.sendmail(self.sender, self.receiver, self.message.as_string())  # 发送
         except smtplib.SMTPException as e:
-            print(f'{Other().log_time}邮件发送错误', e)
+            print(f'{RunProgram().log_time}邮件发送错误', e)
 
     # 免费版本
     def Free_mode(self):
         f_request = requests.get(self.Free_Link, headers={'Accept-Encoding': 'gzip'}).text
         f_weather = json.loads(f_request)
         returnCode_weather = f_weather['code']
-        print(f'{Other().log_time}天气信息请求结果:{self.codes[returnCode_weather]}')
+        print(f'{RunProgram().log_time}天气信息请求结果:{self.codes[returnCode_weather]}')
 
         day_1 = f_weather['daily'][0]
         day_2 = f_weather['daily'][1]
@@ -326,7 +326,7 @@ class SendWeatherMail:
             self.smtp.login(self.sender, self.password)
             self.smtp.sendmail(self.sender, self.receiver, self.message.as_string())
         except smtplib.SMTPException as e:
-            print(f'{Other().log_time}邮件发送错误', e)
+            print(f'{RunProgram().log_time}邮件发送错误', e)
 
     # 获取自然灾害
     def warning_send_mail(self):
@@ -349,7 +349,7 @@ class SendWeatherMail:
         r = requests.get(API_url, headers={'Accept-Encoding': 'gzip'}).text
         data = json.loads(r)
         returnCode_warning = data['code']
-        print(f'{Other().log_time}自然灾害API请求结果:{self.codes[returnCode_warning]}')
+        print(f'{RunProgram().log_time}自然灾害API请求结果:{self.codes[returnCode_warning]}')
         if data['warning']:
             public_time = data['warning'][0]['pubTime']
             title = data['warning'][0]['title']
@@ -362,12 +362,12 @@ class SendWeatherMail:
             status = data['warning'][0]['status']
             if status == 'update':
                 status = '[预警更新]'
-                print(f'{Other().log_time}预警信息已更新')
+                print(f'{RunProgram().log_time}预警信息已更新')
             elif status == 'active':
                 status = '[新的预警]'
-                print(f'{Other().log_time}获取到新的灾害预警')
+                print(f'{RunProgram().log_time}获取到新的灾害预警')
             elif status == 'cancel':
-                print(f'{Other().log_time}预警已取消')
+                print(f'{RunProgram().log_time}预警已取消')
 
             level = data['warning'][0]['level']
             type_ = data['warning'][0]['type']
@@ -403,10 +403,10 @@ class SendWeatherMail:
                     self.smtp.login(self.sender, self.password)
                     self.smtp.sendmail(self.sender, self.receiver, self.message.as_string())
             except smtplib.SMTPException as e:
-                print(f'{Other().log_time}邮件发送错误', e)
+                print(f'{RunProgram().log_time}邮件发送错误', e)
 
 
-class Other:
+class RunProgram:
     def __init__(self):
         self.log_time = time.strftime("[%H:%M:%S]", time.localtime())
 
@@ -452,15 +452,15 @@ if __name__ == '__main__':
     yaml = YAML()
     my_config_file = 'config.yml'
 
-    print(f'{Other().log_time}请不要在配置文件中随意添加字符\n')
+    print(f'{RunProgram().log_time}请不要在配置文件中随意添加字符\n')
     with open(my_config_file, 'r', encoding='utf-8') as f:
         my_config = yaml.load(f)
 
-    Other().check_config()
+    RunProgram().check_config()
     icon_style = my_config['other-settings']['icon-style']
 
     if icon_style not in ['set-1-bw', 'set-1-color', 'set-2', 'random']:
-        print(f'{Other().log_time}[ERROR]图标文件错误请检查配置文件填写是否正确...')
+        print(f'{RunProgram().log_time}[ERROR]图标文件错误请检查配置文件填写是否正确...')
         sys.exit(1)
     elif icon_style == 'random':
         styles = ['set-1-bw', 'set-1-color', 'set-2']
@@ -477,24 +477,24 @@ if __name__ == '__main__':
     if arg_test:
         if arg_test == 'dev':
             SendWeatherMail().Dev_mode()
-            print(f'{Other().log_time}执行完成...')
+            print(f'{RunProgram().log_time}执行完成...')
             sys.exit(0)
         elif arg_test == 'free':
             SendWeatherMail().Free_mode()
-            print(f'{Other().log_time}执行完成...')
+            print(f'{RunProgram().log_time}执行完成...')
             sys.exit(0)
         elif arg_test == 'warning':
             SendWeatherMail().warning_send_mail()
-            print(f'{Other().log_time}执行完成...')
+            print(f'{RunProgram().log_time}执行完成...')
             sys.exit(0)
         elif arg_test == 'war-force':
             SendWeatherMail().warning_send_mail()
-            print(f'{Other().log_time}执行完成...')
+            print(f'{RunProgram().log_time}执行完成...')
             sys.exit(0)
 
     send_time = my_config['other-settings']['send-times']
     # 使用多进程来实现发送正常天气和每10分钟一次的检查自然灾害预报
-    Process(target=Other.run, args=(my_config['request-settings']['mode'], send_time,)).start()
+    Process(target=RunProgram.run, args=(my_config['request-settings']['mode'], send_time,)).start()
 
     # 启动时检查一次
     SendWeatherMail().warning_send_mail()
