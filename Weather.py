@@ -8,7 +8,7 @@
 
 import argparse
 import json
-import random
+import multiprocessing
 import smtplib
 import sys
 import time
@@ -16,7 +16,6 @@ from email.header import Header
 from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from multiprocessing import Process
 
 import requests
 from ruamel.yaml import YAML
@@ -26,19 +25,25 @@ from module import API_get_warning_list
 
 class SendWeatherMail:
     def __init__(self):
-        self.location = my_config['request-settings']['location']  # 城市ID
-        self.key = my_config['request-settings']['key']  # API密钥
-        self.city_name = my_config['only-view-settings']['city-name']  # 城市名称仅作邮件内容
-        self.sender = my_config['mail-settings']['sender']  # 发送者邮箱
-        self.password = my_config['mail-settings']['password']  # 服务器登录密码
-        self.receiver = my_config['other-settings']['receiver']  # 接收者邮箱 --> 列表 [无论有几个人都必须是列表]
-        self.server = my_config['mail-settings']['server']  # 邮箱服务器
-        self.port = my_config['mail-settings']['port']  # 邮箱端口号
-        self.unit = my_config['request-settings']['unit']  # 度量单位
-        self.lang = my_config['request-settings']['lang']  # 语言
-        self.icon_style = my_config['other-settings']['icon-style']  # 天气图标
-        self.mode = my_config['request-settings']['mode']  # 发送模式 --仅作判断标识
-        self.send_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())  # 发送时间
+        with open(my_config_file, 'r', encoding='utf-8') as config_f:
+            self.config = yaml.load(config_f)
+        with open('assets/resources/type_warning.json', 'r', encoding='utf-8') as type_f:
+            self.type_name = json.loads(type_f.read())
+
+        self.location = self.config['request-settings']['location']  # 城市ID
+        self.key = self.config['request-settings']['key']  # API密钥
+        self.city_name = self.config['only-view-settings']['city-name']  # 城市名称仅作邮件内容
+        self.sender = self.config['mail-settings']['sender']  # 发送者邮箱
+        self.password = self.config['mail-settings']['password']  # 服务器登录密码
+        self.receiver = self.config['other-settings']['receiver']  # 接收者邮箱 --> 列表 [无论有几个人都必须是列表]
+        self.server = self.config['mail-settings']['server']  # 邮箱服务器
+        self.port = self.config['mail-settings']['port']  # 邮箱端口号
+        self.unit = self.config['request-settings']['unit']  # 度量单位
+        self.lang = self.config['request-settings']['lang']  # 语言
+        self.icon_style = self.config['other-settings']['icon-style']  # 天气图标
+        self.mode = self.config['request-settings']['mode']  # 发送模式 --仅作判断标识
+        self.send_time = self.config['other-settings']['send-times']  # 发送时间
+        self.icon_style = self.config['other-settings']['icon-style']  # 图标主题
 
         if arg_test == 'war-force':  # 如果运行参数是war-force则替换self.location
             if self.mode != 'dev':  # 如果发送模式不是dev则使用爬虫方式获取城市id
@@ -84,7 +89,7 @@ class SendWeatherMail:
         weather_indices = json.loads(r_indices)
         returnCode_weather = weather_day_text['code']
         returnCode_indices = weather_indices['code']
-        print(f'{RunProgram().log_time}天气信息请求结果:{self.codes[returnCode_weather]} '
+        print(f'{log_time()}天气信息请求结果:{self.codes[returnCode_weather]} '
               f'生活建议请求结果:{self.codes[returnCode_indices]}')
         indices = weather_indices['daily'][0]
         daily_type = f'{indices["name"]}:{indices["category"]}'  # 指数类型 & 建议
@@ -234,14 +239,14 @@ class SendWeatherMail:
             self.smtp.login(self.sender, self.password)  # 登录
             self.smtp.sendmail(self.sender, self.receiver, self.message.as_string())  # 发送
         except smtplib.SMTPException as e:
-            print(f'{RunProgram().log_time}邮件发送错误', e)
+            print(f'{log_time()}邮件发送错误', e)
 
     # 免费版本
     def Free_mode(self):
         f_request = requests.get(self.Free_Link, headers={'Accept-Encoding': 'gzip'}).text
         f_weather = json.loads(f_request)
         returnCode_weather = f_weather['code']
-        print(f'{RunProgram().log_time}天气信息请求结果:{self.codes[returnCode_weather]}')
+        print(f'{log_time()}天气信息请求结果:{self.codes[returnCode_weather]}')
 
         day_1 = f_weather['daily'][0]
         day_2 = f_weather['daily'][1]
@@ -326,7 +331,7 @@ class SendWeatherMail:
             self.smtp.login(self.sender, self.password)
             self.smtp.sendmail(self.sender, self.receiver, self.message.as_string())
         except smtplib.SMTPException as e:
-            print(f'{RunProgram().log_time}邮件发送错误', e)
+            print(f'{log_time()}邮件发送错误', e)
 
     # 获取自然灾害
     def warning_send_mail(self):
@@ -349,7 +354,7 @@ class SendWeatherMail:
         r = requests.get(API_url, headers={'Accept-Encoding': 'gzip'}).text
         data = json.loads(r)
         returnCode_warning = data['code']
-        print(f'{RunProgram().log_time}自然灾害API请求结果:{self.codes[returnCode_warning]}')
+        print(f'{log_time()}自然灾害API请求结果:{self.codes[returnCode_warning]}')
         if data['warning']:
             public_time = data['warning'][0]['pubTime']
             title = data['warning'][0]['title']
@@ -362,16 +367,16 @@ class SendWeatherMail:
             status = data['warning'][0]['status']
             if status == 'update':
                 status = '[预警更新]'
-                print(f'{RunProgram().log_time}预警信息已更新')
+                print(f'{log_time()}预警信息已更新')
             elif status == 'active':
                 status = '[新的预警]'
-                print(f'{RunProgram().log_time}获取到新的灾害预警')
+                print(f'{log_time()}获取到新的灾害预警')
             elif status == 'cancel':
-                print(f'{RunProgram().log_time}预警已取消')
+                print(f'{log_time()}预警已取消')
 
             level = data['warning'][0]['level']
             type_ = data['warning'][0]['type']
-            type_ = type_name[type_]
+            type_ = self.type_name[type_]
             text = data['warning'][0]['text']
             self.message['Subject'] = '自然灾害预警'
             self.message['Subject'] = f'{title}'
@@ -403,73 +408,60 @@ class SendWeatherMail:
                     self.smtp.login(self.sender, self.password)
                     self.smtp.sendmail(self.sender, self.receiver, self.message.as_string())
             except smtplib.SMTPException as e:
-                print(f'{RunProgram().log_time}邮件发送错误', e)
+                print(f'{log_time()}邮件发送错误', e)
 
 
-class RunProgram:
-    def __init__(self):
-        self.log_time = time.strftime("[%H:%M:%S]", time.localtime())
+def loopCheck(mode, time_list):
+    """
+    循环检测时间如果本地时间等于配置文件内填写的时间则发送一封天气信息的邮件
+    :return:
+    """
+    if mode == 'dev':
+        while True:
+            local_time = time.strftime("%H:%M", time.localtime())
+            print(f'{log_time()}运行中  发送模式: Dev 发送时间:{time_list}')
+            time.sleep(3)
+            if local_time in time_list:
+                SendWeatherMail().Dev_mode()
+                print(f'{log_time()}正在发送邮件...')
+                time.sleep(61)
+    elif mode == 'free':
+        while True:
+            local_time = time.strftime("%H:%M", time.localtime())
+            print(f'{log_time()}运行中  发送模式: Dev 发送时间:{time_list}')
+            time.sleep(3)
+            if local_time in time_list:
+                SendWeatherMail().Free_mode()
+                print(f'{log_time()}正在发送邮件...')
+                time.sleep(61)
 
-    def run(self, run_mode, times):
-        """
 
-        循环检测时间如果本地时间等于配置文件内填写的时间则发送一封天气信息的邮件
-        :return:
-        """
-        if run_mode == 'dev':
-            while True:
-                time_local = time.strftime("%H:%M", time.localtime())
-                print(f'self.log_time运行中  发送模式: Dev 发送时间:{times}')
-                if time_local in times:
-                    SendWeatherMail().Dev_mode()
-                    print(f'{self.log_time}正在发送邮件...')
-                    time.sleep(61)
-        elif run_mode == 'free':
-            while True:
-                time_local = time.strftime("%H:%M", time.localtime())
-                print(f'{self.log_time}运行中  发送模式: Dev 发送时间:{times}')
-                if time_local in times:
-                    SendWeatherMail().Free_mode()
-                    print(f'{self.log_time}正在发送邮件...')
-                    time.sleep(61)
+def checkConfig():
+    for mail in _config['mail-settings'].values():
+        if mail is None:
+            print(f'{log_time()}[ERROR]"mail-settings"有未填写项...')
+            sys.exit(1)
+    for request in SendWeatherMail().config['request-settings'].values():
+        if request is None:
+            print(f'{log_time()}[ERROR]"request-settings"有未填写项...')
+            sys.exit(1)
+    for other in SendWeatherMail().config['other-settings'].values():
+        if other is None:
+            print(f'{log_time()}[ERROR]"request-settings"有未填写项...')
+            sys.exit(1)
 
-    def check_config(self):
-        for mail in my_config['mail-settings'].values():
-            if mail is None:
-                print(f'{self.log_time}[ERROR]"mail-settings"有未填写项...')
-                sys.exit(1)
-        for request in my_config['request-settings'].values():
-            if request is None:
-                print(f'{self.log_time}[ERROR]"request-settings"有未填写项...')
-                sys.exit(1)
-        for other in my_config['other-settings'].values():
-            if other is None:
-                print(f'{self.log_time}[ERROR]"request-settings"有未填写项...')
-                sys.exit(1)
+
+def log_time():
+    return time.strftime("[%H:%M:%S]")
 
 
 if __name__ == '__main__':
+    print(f'{log_time()}配置文件请不要随意修改\n')
     yaml = YAML()
-    my_config_file = 'config.yml'
-
-    print(f'{RunProgram().log_time}请不要在配置文件中随意添加字符\n')
+    my_config_file = 'config-owner.yml'
     with open(my_config_file, 'r', encoding='utf-8') as f:
-        my_config = yaml.load(f)
-
-    RunProgram().check_config()
-    icon_style = my_config['other-settings']['icon-style']
-
-    if icon_style not in ['set-1-bw', 'set-1-color', 'set-2', 'random']:
-        print(f'{RunProgram().log_time}[ERROR]图标文件错误请检查配置文件填写是否正确...')
-        sys.exit(1)
-    elif icon_style == 'random':
-        styles = ['set-1-bw', 'set-1-color', 'set-2']
-        icon_style = random.choice(styles)
-
-    # 自然灾害中的typeID 对应的类型
-    with open('assets/resources/type_warning.json', 'r', encoding='utf-8') as f:
-        type_name = json.loads(f.read())
-    # 获取命令行参数
+        _config = yaml.load(f)
+    checkConfig()
     parser = argparse.ArgumentParser()
     parser.add_argument('-t', '--test', help='Some operations for test.',
                         choices=['free', 'dev', 'warning', 'war-force'])
@@ -477,33 +469,30 @@ if __name__ == '__main__':
     if arg_test:
         if arg_test == 'dev':
             SendWeatherMail().Dev_mode()
-            print(f'{RunProgram().log_time}执行完成...')
+            print(f'{log_time()}执行完成...')
             sys.exit(0)
         elif arg_test == 'free':
             SendWeatherMail().Free_mode()
-            print(f'{RunProgram().log_time}执行完成...')
+            print(f'{log_time()}执行完成...')
             sys.exit(0)
         elif arg_test == 'warning':
             SendWeatherMail().warning_send_mail()
-            print(f'{RunProgram().log_time}执行完成...')
+            print(f'{log_time()}执行完成...')
             sys.exit(0)
         elif arg_test == 'war-force':
             SendWeatherMail().warning_send_mail()
-            print(f'{RunProgram().log_time}执行完成...')
+            print(f'{log_time()}执行完成...')
             sys.exit(0)
 
-    send_time = my_config['other-settings']['send-times']
-    # 使用多进程来实现发送正常天气和每10分钟一次的检查自然灾害预报
-    Process(target=RunProgram.run, args=(my_config['request-settings']['mode'], send_time,)).start()
+    _times = _config['other-settings']['send-times']
+    _mode = _config['request-settings']['mode']
 
-    # 启动时检查一次
-    SendWeatherMail().warning_send_mail()
-
-    # 每10分钟检查一次自然灾害预报 在运行程序的时候也会检查一次
-    time_count = 0
+    multiprocessing.Process(target=loopCheck, args=(_mode, _times)).run()
+    loop_timer = 0
     while True:
+        print('running')
         time.sleep(1)
-        time_count += 1
-        if time_count == 600:
+        loop_timer += 1
+        if loop_timer == 600:
             SendWeatherMail().warning_send_mail()
-            time_count = 0
+            loop_timer = 0
