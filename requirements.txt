@@ -4,3 +4,5 @@ pandas
 pyppeteer
 bs4
 openpyxl
+pcqq
+pillow
