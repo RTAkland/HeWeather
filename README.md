@@ -17,7 +17,7 @@
 - 已知问题: 这个库用装饰器来运行相关函数　但是不同装饰器会被同一个条件触发
 
 # English README.md
-# Introduction
+# Statement
 - Developed by **RTAkland (markushammered@gmail.com)**
 - The weather API from QWeather<i><a href="https://qweather.com" target="_blank">QWeather Official Website</a></i>
 - QWeather Development Platform: <i><a href="https://dev.qweather.com" target="_blank">和风天气开发者平台</a></i>
