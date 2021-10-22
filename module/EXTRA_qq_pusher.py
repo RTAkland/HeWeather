@@ -4,7 +4,6 @@
 # @Development Tool: PyCharm
 # @Create Time: 2021/10/21
 # @File Name: EXTRA_pusher.py
-import random
 
 import pcqq
 import requests
