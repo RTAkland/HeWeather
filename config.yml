@@ -104,15 +104,5 @@ only-view-settings:
   user:
 
 
-
-#EXTRA:
-#  QQBOT:
-#   # 通过go-cqhttp发送信息到QQ
-#   # 此项使用起来很麻烦建议不要弄
-#   # 开启此项会占用系统两个端口： 5700 8000
-#    ToQQ: false
-#   # 发送延迟单位： 小时
-#    Delay: 2
-#   # 手动发送天气信息的关键字 必须以 [!!] 开头
-#   # 手动请求只会发送时时天气 并且 无法选择地区(自动发送也无法选)
-#    Keyword: '!!tq'
+EXTRA:
+  push-to-qq: false
