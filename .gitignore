@@ -1,6 +1,7 @@
 # 调试用配置文件
 *.yml
 !config.yml
+*.token
 
 # 压缩包
 *.zip
@@ -14,6 +15,4 @@
 # 虚拟环境
 venv/
 
-# 调试开发
-*.token
 
