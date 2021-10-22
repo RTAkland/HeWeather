@@ -42,16 +42,6 @@ def returnWeather(session: pcqq.Session):
     session.send(msg)
 
 
-# @pcqq.on_event(pcqq.checkType('private'))
-# def ReturnHelp(session: pcqq.Session):
-#     text = f"""
-#     ======帮助======
-#     任意私聊消息 -> 帮助
-#     !!tq -> 获取天气
-#     """
-#     session.send(text)
-
-
 pcqq.init()
 pcqq.run()
 
