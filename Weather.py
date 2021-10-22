@@ -458,7 +458,7 @@ def log_time():
 if __name__ == '__main__':
     print(f'{log_time()}配置文件请不要随意修改\n')
     yaml = YAML()
-    my_config_file = 'config-owner.yml'
+    my_config_file = 'config.yml'
     with open(my_config_file, 'r', encoding='utf-8') as f:
         _config = yaml.load(f)
     checkConfig()
